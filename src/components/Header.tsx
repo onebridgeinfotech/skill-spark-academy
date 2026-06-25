@@ -251,13 +251,78 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            className="lg:hidden p-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Mobile search + hamburger */}
+          <div className="lg:hidden flex items-center gap-1">
+            {/* Search icon — mobile/tablet */}
+            <div className="relative">
+              <button
+                onClick={() => setSearchOpen(!searchOpen)}
+                className="w-10 h-10 flex items-center justify-center rounded-lg text-slate-500 hover:text-[#004890] hover:bg-[#004890]/6 transition-all"
+                aria-label="Search courses"
+              >
+                <Search className="w-5 h-5" />
+              </button>
+              <AnimatePresence>
+                {searchOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full right-0 mt-2 w-[90vw] max-w-sm bg-white border border-slate-100 rounded-xl shadow-lg p-4 z-50"
+                  >
+                    <div className="relative mb-3">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
+                      <input
+                        autoFocus
+                        type="text"
+                        placeholder="Search courses..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full bg-slate-50 border border-slate-100 rounded-lg py-2.5 pl-9 pr-3 text-sm text-slate-700 focus:outline-none focus:border-[#004890] transition-colors"
+                      />
+                    </div>
+                    <div className="space-y-0.5">
+                      <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider px-2 pb-1.5">
+                        {searchQuery ? "Results" : "Popular Programmes"}
+                      </p>
+                      {filteredCourses.map((c) => (
+                        <Link
+                          key={c.id}
+                          {...(c.slug ? getCourseLink(c.slug) : { to: "/courses" as const })}
+                          onClick={() => { setSearchOpen(false); setSearchQuery(""); setMobileOpen(false); }}
+                          className="flex items-center justify-between p-2.5 rounded-lg hover:bg-slate-50 transition-all group"
+                        >
+                          <div>
+                            <div className="text-sm font-semibold text-slate-700 group-hover:text-[#004890] transition-colors">{c.name}</div>
+                            <div className="text-xs text-slate-400 mt-0.5">{c.category} · {c.duration}</div>
+                          </div>
+                          <ArrowRight className="w-3.5 h-3.5 text-[#FF9E0D] opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </Link>
+                      ))}
+                      {filteredCourses.length === 0 && (
+                        <p className="py-4 text-center text-slate-400 text-sm">No courses found.</p>
+                      )}
+                      <Link
+                        to="/courses"
+                        onClick={() => { setSearchOpen(false); setMobileOpen(false); }}
+                        className="flex items-center justify-center gap-1.5 pt-3 mt-1 border-t border-slate-100 text-xs font-semibold text-[#004890] hover:text-[#FF9E0D] transition-colors"
+                      >
+                        View all courses <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <button
+              className="p-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors"
+              onClick={() => setMobileOpen(!mobileOpen)}
+            >
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
       </div>
 

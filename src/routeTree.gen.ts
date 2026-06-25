@@ -12,10 +12,18 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WhyChooseUsRouteImport } from './routes/why-choose-us'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SecurityRouteImport } from './routes/security'
+import { Route as ScrumMasterRouteImport } from './routes/scrum-master'
+import { Route as SalesforceMarketingCloudRouteImport } from './routes/salesforce-marketing-cloud'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PmpCertificationRouteImport } from './routes/pmp-certification'
 import { Route as GenerativeAiCourseRouteImport } from './routes/generative-ai-course'
+import { Route as DigitalMarketingAiCourseRouteImport } from './routes/digital-marketing-ai-course'
+import { Route as CyberSecurityCourseRouteImport } from './routes/cyber-security-course'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AzureDevopsGenAiRouteImport } from './routes/azure-devops-gen-ai'
+import { Route as AzureDataEngineerRouteImport } from './routes/azure-data-engineer'
+import { Route as AwsDevopsGenAiRouteImport } from './routes/aws-devops-gen-ai'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoursesSlugRouteImport } from './routes/courses_.$slug'
@@ -35,14 +43,41 @@ const SecurityRoute = SecurityRouteImport.update({
   path: '/security',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ScrumMasterRoute = ScrumMasterRouteImport.update({
+  id: '/scrum-master',
+  path: '/scrum-master',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SalesforceMarketingCloudRoute =
+  SalesforceMarketingCloudRouteImport.update({
+    id: '/salesforce-marketing-cloud',
+    path: '/salesforce-marketing-cloud',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PmpCertificationRoute = PmpCertificationRouteImport.update({
+  id: '/pmp-certification',
+  path: '/pmp-certification',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GenerativeAiCourseRoute = GenerativeAiCourseRouteImport.update({
   id: '/generative-ai-course',
   path: '/generative-ai-course',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DigitalMarketingAiCourseRoute =
+  DigitalMarketingAiCourseRouteImport.update({
+    id: '/digital-marketing-ai-course',
+    path: '/digital-marketing-ai-course',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CyberSecurityCourseRoute = CyberSecurityCourseRouteImport.update({
+  id: '/cyber-security-course',
+  path: '/cyber-security-course',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CoursesRoute = CoursesRouteImport.update({
@@ -53,6 +88,21 @@ const CoursesRoute = CoursesRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AzureDevopsGenAiRoute = AzureDevopsGenAiRouteImport.update({
+  id: '/azure-devops-gen-ai',
+  path: '/azure-devops-gen-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AzureDataEngineerRoute = AzureDataEngineerRouteImport.update({
+  id: '/azure-data-engineer',
+  path: '/azure-data-engineer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AwsDevopsGenAiRoute = AwsDevopsGenAiRouteImport.update({
+  id: '/aws-devops-gen-ai',
+  path: '/aws-devops-gen-ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -74,10 +124,18 @@ const CoursesSlugRoute = CoursesSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/aws-devops-gen-ai': typeof AwsDevopsGenAiRoute
+  '/azure-data-engineer': typeof AzureDataEngineerRoute
+  '/azure-devops-gen-ai': typeof AzureDevopsGenAiRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
+  '/cyber-security-course': typeof CyberSecurityCourseRoute
+  '/digital-marketing-ai-course': typeof DigitalMarketingAiCourseRoute
   '/generative-ai-course': typeof GenerativeAiCourseRoute
+  '/pmp-certification': typeof PmpCertificationRoute
   '/privacy': typeof PrivacyRoute
+  '/salesforce-marketing-cloud': typeof SalesforceMarketingCloudRoute
+  '/scrum-master': typeof ScrumMasterRoute
   '/security': typeof SecurityRoute
   '/services': typeof ServicesRoute
   '/why-choose-us': typeof WhyChooseUsRoute
@@ -86,10 +144,18 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/aws-devops-gen-ai': typeof AwsDevopsGenAiRoute
+  '/azure-data-engineer': typeof AzureDataEngineerRoute
+  '/azure-devops-gen-ai': typeof AzureDevopsGenAiRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
+  '/cyber-security-course': typeof CyberSecurityCourseRoute
+  '/digital-marketing-ai-course': typeof DigitalMarketingAiCourseRoute
   '/generative-ai-course': typeof GenerativeAiCourseRoute
+  '/pmp-certification': typeof PmpCertificationRoute
   '/privacy': typeof PrivacyRoute
+  '/salesforce-marketing-cloud': typeof SalesforceMarketingCloudRoute
+  '/scrum-master': typeof ScrumMasterRoute
   '/security': typeof SecurityRoute
   '/services': typeof ServicesRoute
   '/why-choose-us': typeof WhyChooseUsRoute
@@ -99,10 +165,18 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/aws-devops-gen-ai': typeof AwsDevopsGenAiRoute
+  '/azure-data-engineer': typeof AzureDataEngineerRoute
+  '/azure-devops-gen-ai': typeof AzureDevopsGenAiRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
+  '/cyber-security-course': typeof CyberSecurityCourseRoute
+  '/digital-marketing-ai-course': typeof DigitalMarketingAiCourseRoute
   '/generative-ai-course': typeof GenerativeAiCourseRoute
+  '/pmp-certification': typeof PmpCertificationRoute
   '/privacy': typeof PrivacyRoute
+  '/salesforce-marketing-cloud': typeof SalesforceMarketingCloudRoute
+  '/scrum-master': typeof ScrumMasterRoute
   '/security': typeof SecurityRoute
   '/services': typeof ServicesRoute
   '/why-choose-us': typeof WhyChooseUsRoute
@@ -113,10 +187,18 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/aws-devops-gen-ai'
+    | '/azure-data-engineer'
+    | '/azure-devops-gen-ai'
     | '/contact'
     | '/courses'
+    | '/cyber-security-course'
+    | '/digital-marketing-ai-course'
     | '/generative-ai-course'
+    | '/pmp-certification'
     | '/privacy'
+    | '/salesforce-marketing-cloud'
+    | '/scrum-master'
     | '/security'
     | '/services'
     | '/why-choose-us'
@@ -125,10 +207,18 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/aws-devops-gen-ai'
+    | '/azure-data-engineer'
+    | '/azure-devops-gen-ai'
     | '/contact'
     | '/courses'
+    | '/cyber-security-course'
+    | '/digital-marketing-ai-course'
     | '/generative-ai-course'
+    | '/pmp-certification'
     | '/privacy'
+    | '/salesforce-marketing-cloud'
+    | '/scrum-master'
     | '/security'
     | '/services'
     | '/why-choose-us'
@@ -137,10 +227,18 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/aws-devops-gen-ai'
+    | '/azure-data-engineer'
+    | '/azure-devops-gen-ai'
     | '/contact'
     | '/courses'
+    | '/cyber-security-course'
+    | '/digital-marketing-ai-course'
     | '/generative-ai-course'
+    | '/pmp-certification'
     | '/privacy'
+    | '/salesforce-marketing-cloud'
+    | '/scrum-master'
     | '/security'
     | '/services'
     | '/why-choose-us'
@@ -150,10 +248,18 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AwsDevopsGenAiRoute: typeof AwsDevopsGenAiRoute
+  AzureDataEngineerRoute: typeof AzureDataEngineerRoute
+  AzureDevopsGenAiRoute: typeof AzureDevopsGenAiRoute
   ContactRoute: typeof ContactRoute
   CoursesRoute: typeof CoursesRoute
+  CyberSecurityCourseRoute: typeof CyberSecurityCourseRoute
+  DigitalMarketingAiCourseRoute: typeof DigitalMarketingAiCourseRoute
   GenerativeAiCourseRoute: typeof GenerativeAiCourseRoute
+  PmpCertificationRoute: typeof PmpCertificationRoute
   PrivacyRoute: typeof PrivacyRoute
+  SalesforceMarketingCloudRoute: typeof SalesforceMarketingCloudRoute
+  ScrumMasterRoute: typeof ScrumMasterRoute
   SecurityRoute: typeof SecurityRoute
   ServicesRoute: typeof ServicesRoute
   WhyChooseUsRoute: typeof WhyChooseUsRoute
@@ -183,6 +289,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SecurityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/scrum-master': {
+      id: '/scrum-master'
+      path: '/scrum-master'
+      fullPath: '/scrum-master'
+      preLoaderRoute: typeof ScrumMasterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/salesforce-marketing-cloud': {
+      id: '/salesforce-marketing-cloud'
+      path: '/salesforce-marketing-cloud'
+      fullPath: '/salesforce-marketing-cloud'
+      preLoaderRoute: typeof SalesforceMarketingCloudRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -190,11 +310,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pmp-certification': {
+      id: '/pmp-certification'
+      path: '/pmp-certification'
+      fullPath: '/pmp-certification'
+      preLoaderRoute: typeof PmpCertificationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/generative-ai-course': {
       id: '/generative-ai-course'
       path: '/generative-ai-course'
       fullPath: '/generative-ai-course'
       preLoaderRoute: typeof GenerativeAiCourseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/digital-marketing-ai-course': {
+      id: '/digital-marketing-ai-course'
+      path: '/digital-marketing-ai-course'
+      fullPath: '/digital-marketing-ai-course'
+      preLoaderRoute: typeof DigitalMarketingAiCourseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cyber-security-course': {
+      id: '/cyber-security-course'
+      path: '/cyber-security-course'
+      fullPath: '/cyber-security-course'
+      preLoaderRoute: typeof CyberSecurityCourseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/courses': {
@@ -209,6 +350,27 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/azure-devops-gen-ai': {
+      id: '/azure-devops-gen-ai'
+      path: '/azure-devops-gen-ai'
+      fullPath: '/azure-devops-gen-ai'
+      preLoaderRoute: typeof AzureDevopsGenAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/azure-data-engineer': {
+      id: '/azure-data-engineer'
+      path: '/azure-data-engineer'
+      fullPath: '/azure-data-engineer'
+      preLoaderRoute: typeof AzureDataEngineerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aws-devops-gen-ai': {
+      id: '/aws-devops-gen-ai'
+      path: '/aws-devops-gen-ai'
+      fullPath: '/aws-devops-gen-ai'
+      preLoaderRoute: typeof AwsDevopsGenAiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -238,10 +400,18 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AwsDevopsGenAiRoute: AwsDevopsGenAiRoute,
+  AzureDataEngineerRoute: AzureDataEngineerRoute,
+  AzureDevopsGenAiRoute: AzureDevopsGenAiRoute,
   ContactRoute: ContactRoute,
   CoursesRoute: CoursesRoute,
+  CyberSecurityCourseRoute: CyberSecurityCourseRoute,
+  DigitalMarketingAiCourseRoute: DigitalMarketingAiCourseRoute,
   GenerativeAiCourseRoute: GenerativeAiCourseRoute,
+  PmpCertificationRoute: PmpCertificationRoute,
   PrivacyRoute: PrivacyRoute,
+  SalesforceMarketingCloudRoute: SalesforceMarketingCloudRoute,
+  ScrumMasterRoute: ScrumMasterRoute,
   SecurityRoute: SecurityRoute,
   ServicesRoute: ServicesRoute,
   WhyChooseUsRoute: WhyChooseUsRoute,

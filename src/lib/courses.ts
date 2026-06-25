@@ -1,35 +1,43 @@
 import type { Course } from "@/components/CourseCard";
 
 export const courses: Course[] = [
-  /* Cloud & Infrastructure Vertical */
-  { id: "1", name: "AWS Solutions Architect (Professional)", duration: "12 Weeks", level: "Advanced", category: "Cloud Systems", description: "Design high-availability, fault-tolerant, and scalable systems on AWS. Master VPC, Multi-Account strategy, and Serverless architectures.", icon: "☁️", slug: "aws-solutions-architect" },
-  { id: "2", name: "Microsoft Azure Hub Administration", duration: "12 Weeks", level: "Advanced", category: "Cloud Systems", description: "Implement, manage, and monitor identity, governance, storage, compute, and virtual networks in a Microsoft Azure environment.", icon: "🌐", slug: "microsoft-azure-administration" },
-  { id: "3", name: "DevOps & SRE Engineering", duration: "10 Weeks", level: "Advanced", category: "DevOps", description: "Automate delivery pipelines with Jenkins, GitHub Actions, Docker, and Kubernetes. Master Terraform for Infrastructure as Code.", icon: "🔧", slug: "devops-sre-engineering" },
-
-  /* Development & Engineering Vertical */
-  { id: "4", name: "Next.js 15 & React Full-Stack Lead", duration: "16 Weeks", level: "Intermediate", category: "Modern Web", description: "Master the T3 stack with Next.js, TypeScript, and Prisma. Build enterprise-grade applications with advanced Server Components.", icon: "💻", slug: "nextjs-react-fullstack" },
-  { id: "5", name: "Java Full-Stack (Spring Boot / Microservices)", duration: "16 Weeks", level: "Advanced", category: "Modern Web", description: "Master the backend with Java Spring Boot. Design Distributed Systems, Event-Driven Architectures, and RESTful APIs.", icon: "☕", slug: "java-fullstack-microservices" },
-  { id: "6", name: "Python for Automation & Data", duration: "8 Weeks", level: "Beginner", category: "Data Science", description: "From core syntax to advanced scripting. Automate boring tasks and build a solid foundation for Data Engineering.", icon: "🐍", slug: "python-automation-data" },
-
-  /* Data & Intelligence Vertical */
-  { id: "7", name: "Data Science & MLOps Specialization", duration: "14 Weeks", level: "Intermediate", category: "Data Science", description: "Master Python for Data Science. Build, deploy, and scale machine learning models with MLFlow and Airflow.", icon: "📊", slug: "data-science-mlops" },
-  { id: "8", name: "Power BI & Tableau Data Viz", duration: "6 Weeks", level: "Beginner", category: "Data Science", description: "Transform raw data into high-impact business insights using professional visualization tools and DAX querying.", icon: "📈", slug: "power-bi-tableau" },
-
-  /* Security & Systems Vertical */
-  { id: "9", name: "Cybersecurity & Ethical Hacking", duration: "12 Weeks", level: "Advanced", category: "Cyber Security", description: "Identify vulnerabilities, master penetration testing, and secure enterprise networks against modern threat vectors.", icon: "🛡️", slug: "cybersecurity-ethical-hacking" },
-  { id: "10", name: "CISSP Professional Certification", duration: "10 Weeks", level: "Advanced", category: "Cyber Security", description: "Comprehensive preparation for the gold standard in information security certifications. Master the 8 CISSP domains.", icon: "⚔️", slug: "cissp-certification" },
-
-  /* Emerging & Specialty Vertical */
-  { id: "11", name: "Salesforce Admin & Dev Mastery", duration: "10 Weeks", level: "Intermediate", category: "Salesforce", description: "Customize Salesforce environments, master Apex coding, and build powerful business workflows for global enterprises.", icon: "☁️", slug: "salesforce-admin-dev" },
-  { id: "12", name: "UI/UX Product Design (Figma)", duration: "8 Weeks", level: "Intermediate", category: "Modern Web", description: "Master digital product design. Learn user research, high-fidelity prototyping, and design system construction in Figma.", icon: "🎨", slug: "ui-ux-product-design" },
-  { id: "13", name: "QA Automation (Selenium / Cypress)", duration: "10 Weeks", level: "Intermediate", category: "DevOps", description: "Engineered quality assurance. Automate browser testing and mobile validation with modern frameworks and CI integration.", icon: "🧪", slug: "qa-automation" },
-  { id: "14", name: "Digital Marketing Growth Hacking", duration: "8 Weeks", level: "Beginner", category: "Marketing", description: "Master SEO, SEM, and performance marketing to scale digital products and drive high-intent conversion.", icon: "🚀", slug: "digital-marketing-growth" },
-  { id: "15", name: "Generative AI & LLM Masterclass", duration: "12 Weeks", level: "Advanced", category: "Artificial Intelligence", description: "Architect next-gen AI solutions with LLMs, RAG, and AI Agents. Master prompt engineering and autonomous agent workflows.", icon: "🧠", slug: "generative-ai" },
+  { id: "1",  name: "Generative AI & LLM Masterclass",   duration: "12 Weeks", level: "Advanced",     category: "Artificial Intelligence", description: "Architect next-gen AI solutions with LLMs, RAG, and AI Agents. Master prompt engineering and autonomous agent workflows.", icon: "🧠", slug: "generative-ai" },
+  { id: "2",  name: "AWS DevOps with Generative AI",     duration: "10 Weeks", level: "Advanced",     category: "DevOps",                  description: "Master AWS DevOps pipelines and integrate Amazon Bedrock AI into enterprise delivery workflows. CI/CD, EKS, and Terraform.", icon: "⚙️", slug: "aws-devops-gen-ai" },
+  { id: "3",  name: "Azure DevOps with Generative AI",   duration: "10 Weeks", level: "Advanced",     category: "DevOps",                  description: "Build enterprise CI/CD pipelines on Azure DevOps with AKS, Bicep/Terraform, and Azure OpenAI integration.", icon: "🔵", slug: "azure-devops-gen-ai" },
+  { id: "4",  name: "Cyber Security",                    duration: "12 Weeks", level: "Advanced",     category: "Cyber Security",          description: "Master network security, ethical hacking, cloud security, SOC analysis, and CompTIA Security+ / CEH exam preparation.", icon: "🔐", slug: "cyber-security-course" },
+  { id: "5",  name: "Azure Data Engineer",               duration: "12 Weeks", level: "Advanced",     category: "Data Science",            description: "Master Azure Data Factory, Synapse Analytics, Databricks, and Delta Lake. DP-203 certification preparation included.", icon: "🗄️", slug: "azure-data-engineer" },
+  { id: "6",  name: "PMP Certification",                 duration: "8 Weeks",  level: "Intermediate", category: "Project Management",      description: "35 PMI contact hours. Master predictive and agile project management frameworks and pass the PMP exam first time.", icon: "📋", slug: "pmp-certification" },
+  { id: "7",  name: "Scrum Master Certification",        duration: "6 Weeks",  level: "Beginner",     category: "Project Management",      description: "Live Sprint simulations, SAFe scaling frameworks, and full CSM / PSM I certification preparation.", icon: "🏃", slug: "scrum-master" },
+  { id: "8",  name: "Digital Marketing with AI",         duration: "8 Weeks",  level: "Beginner",     category: "Marketing",               description: "Master SEO, Google Ads, Meta, email automation, and AI tools like ChatGPT and Jasper. Google & Meta cert prep included.", icon: "📣", slug: "digital-marketing-ai-course" },
+  { id: "9",  name: "Salesforce Marketing Cloud",        duration: "10 Weeks", level: "Intermediate", category: "Salesforce",              description: "Email Studio, Journey Builder, AMPscript, Automation Studio — with Email Specialist certification preparation.", icon: "📧", slug: "salesforce-marketing-cloud" },
 ];
 
+const templateSlugs = new Set([
+  "generative-ai",
+  "aws-devops-gen-ai",
+  "azure-devops-gen-ai",
+  "cyber-security-course",
+  "azure-data-engineer",
+  "pmp-certification",
+  "scrum-master",
+  "digital-marketing-ai-course",
+  "salesforce-marketing-cloud",
+]);
+
 export function getCourseLink(slug: string) {
-  if (slug === "generative-ai") {
-    return { to: "/generative-ai-course" as const };
+  if (templateSlugs.has(slug)) {
+    const routes: Record<string, string> = {
+      "generative-ai":               "/generative-ai-course",
+      "aws-devops-gen-ai":           "/aws-devops-gen-ai",
+      "azure-devops-gen-ai":         "/azure-devops-gen-ai",
+      "cyber-security-course":       "/cyber-security-course",
+      "azure-data-engineer":         "/azure-data-engineer",
+      "pmp-certification":           "/pmp-certification",
+      "scrum-master":                "/scrum-master",
+      "digital-marketing-ai-course": "/digital-marketing-ai-course",
+      "salesforce-marketing-cloud":  "/salesforce-marketing-cloud",
+    };
+    return { to: routes[slug] as "/" };
   }
   return { to: "/courses/$slug" as const, params: { slug } };
 }

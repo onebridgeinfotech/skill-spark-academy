@@ -4,8 +4,19 @@ import { coursePagesBySlug } from "@/lib/coursePages";
 
 export const Route = createFileRoute("/courses_/$slug")({
   beforeLoad: ({ params }) => {
-    if (params.slug === "generative-ai") {
-      throw redirect({ to: "/generative-ai-course" });
+    const templateRoutes: Record<string, string> = {
+      "generative-ai":               "/generative-ai-course",
+      "aws-devops-gen-ai":           "/aws-devops-gen-ai",
+      "azure-devops-gen-ai":         "/azure-devops-gen-ai",
+      "cyber-security-course":       "/cyber-security-course",
+      "azure-data-engineer":         "/azure-data-engineer",
+      "pmp-certification":           "/pmp-certification",
+      "scrum-master":                "/scrum-master",
+      "digital-marketing-ai-course": "/digital-marketing-ai-course",
+      "salesforce-marketing-cloud":  "/salesforce-marketing-cloud",
+    };
+    if (templateRoutes[params.slug]) {
+      throw redirect({ to: templateRoutes[params.slug] as "/" });
     }
     if (!coursePagesBySlug[params.slug]) {
       throw redirect({ to: "/courses" });

@@ -59,27 +59,15 @@ function page(
 }
 
 export const coursePages: CoursePage[] = [
-  page("aws-solutions-architect", "AWS Solutions Architect (Professional)", "12 Weeks", "Advanced", "Cloud Systems", "Design high-availability, fault-tolerant, and scalable systems on AWS. Master VPC, Multi-Account strategy, and Serverless architectures.", "☁️"),
-  page("microsoft-azure-administration", "Microsoft Azure Hub Administration", "12 Weeks", "Advanced", "Cloud Systems", "Implement, manage, and monitor identity, governance, storage, compute, and virtual networks in a Microsoft Azure environment.", "🌐"),
-  page("devops-sre-engineering", "DevOps & SRE Engineering", "10 Weeks", "Advanced", "DevOps", "Automate delivery pipelines with Jenkins, GitHub Actions, Docker, and Kubernetes. Master Terraform for Infrastructure as Code.", "🔧"),
-  page("nextjs-react-fullstack", "Next.js 15 & React Full-Stack Lead", "16 Weeks", "Intermediate", "Modern Web", "Master the T3 stack with Next.js, TypeScript, and Prisma. Build enterprise-grade applications with advanced Server Components.", "💻"),
-  page("java-fullstack-microservices", "Java Full-Stack (Spring Boot / Microservices)", "16 Weeks", "Advanced", "Modern Web", "Master the backend with Java Spring Boot. Design Distributed Systems, Event-Driven Architectures, and RESTful APIs.", "☕"),
-  page("python-automation-data", "Python for Automation & Data", "8 Weeks", "Beginner", "Data Science", "From core syntax to advanced scripting. Automate boring tasks and build a solid foundation for Data Engineering.", "🐍"),
-  page("data-science-mlops", "Data Science & MLOps Specialization", "14 Weeks", "Intermediate", "Data Science", "Master Python for Data Science. Build, deploy, and scale machine learning models with MLFlow and Airflow.", "📊"),
-  page("power-bi-tableau", "Power BI & Tableau Data Viz", "6 Weeks", "Beginner", "Data Science", "Transform raw data into high-impact business insights using professional visualization tools and DAX querying.", "📈"),
-  page("cybersecurity-ethical-hacking", "Cybersecurity & Ethical Hacking", "12 Weeks", "Advanced", "Cyber Security", "Identify vulnerabilities, master penetration testing, and secure enterprise networks against modern threat vectors.", "🛡️"),
-  page("cissp-certification", "CISSP Professional Certification", "10 Weeks", "Advanced", "Cyber Security", "Comprehensive preparation for the gold standard in information security certifications. Master the 8 CISSP domains.", "⚔️"),
-  page("salesforce-admin-dev", "Salesforce Admin & Dev Mastery", "10 Weeks", "Intermediate", "Salesforce", "Customize Salesforce environments, master Apex coding, and build powerful business workflows for global enterprises.", "☁️"),
-  page("ui-ux-product-design", "UI/UX Product Design (Figma)", "8 Weeks", "Intermediate", "Modern Web", "Master digital product design. Learn user research, high-fidelity prototyping, and design system construction in Figma.", "🎨"),
-  page("qa-automation", "QA Automation (Selenium / Cypress)", "10 Weeks", "Intermediate", "DevOps", "Engineered quality assurance. Automate browser testing and mobile validation with modern frameworks and CI integration.", "🧪"),
-  page("digital-marketing-growth", "Digital Marketing Growth Hacking", "8 Weeks", "Beginner", "Marketing", "Master SEO, SEM, and performance marketing to scale digital products and drive high-intent conversion.", "🚀"),
   page("generative-ai", "Generative AI & LLM Masterclass", "12 Weeks", "Advanced", "Artificial Intelligence", "Architect next-gen AI solutions with LLMs, RAG, and AI Agents. Master prompt engineering and autonomous agent workflows.", "🧠"),
-  page("oracle-eloqua", "Oracle Eloqua Marketing", "10 Weeks", "Intermediate", "Marketing", "Oracle Eloqua Marketing Automation training with projects and certification support.", "🌐"),
-  page("salesforce-admin", "Salesforce Admin", "10 Weeks", "Intermediate", "Salesforce", "Salesforce Admin training with projects and certification support.", "☁️"),
-  page("salesforce-data-cloud", "Salesforce Data Cloud", "10 Weeks", "Advanced", "Salesforce", "Salesforce Data Cloud training with projects and certification support.", "☁️"),
-  page("salesforce-marketing", "Salesforce Marketing Cloud", "10 Weeks", "Intermediate", "Salesforce", "Salesforce Marketing Cloud training with projects and certification support.", "🎯"),
-  page("digital-marketing-ai", "Digital Marketing with AI", "8 Weeks", "Intermediate", "Marketing", "Digital Marketing with AI training with projects and certification support.", "🚀"),
-  page("salesforce-pardot", "Salesforce Pardot", "10 Weeks", "Intermediate", "Salesforce", "Salesforce Pardot training with projects and certification support.", "☁️"),
+  page("aws-devops-gen-ai", "AWS DevOps with Generative AI", "10 Weeks", "Advanced", "DevOps", "Master AWS DevOps pipelines and integrate Amazon Bedrock AI into enterprise delivery workflows. CI/CD, EKS, and Terraform.", "⚙️"),
+  page("azure-devops-gen-ai", "Azure DevOps with Generative AI", "10 Weeks", "Advanced", "DevOps", "Build enterprise CI/CD pipelines on Azure DevOps with AKS, Bicep/Terraform, and Azure OpenAI integration.", "🔵"),
+  page("cyber-security-course", "Cyber Security", "12 Weeks", "Advanced", "Cyber Security", "Master network security, ethical hacking, cloud security, SOC analysis, and CompTIA Security+ / CEH exam preparation.", "🔐"),
+  page("azure-data-engineer", "Azure Data Engineer", "12 Weeks", "Advanced", "Data Science", "Master Azure Data Factory, Synapse Analytics, Databricks, and Delta Lake. DP-203 certification preparation included.", "🗄️"),
+  page("pmp-certification", "PMP Certification", "8 Weeks", "Intermediate", "Project Management", "35 PMI contact hours. Master predictive and agile project management frameworks and pass the PMP exam first time.", "📋"),
+  page("scrum-master", "Scrum Master Certification", "6 Weeks", "Beginner", "Project Management", "Live Sprint simulations, SAFe scaling frameworks, and full CSM / PSM I certification preparation.", "🏃"),
+  page("digital-marketing-ai-course", "Digital Marketing with AI", "8 Weeks", "Beginner", "Marketing", "Master SEO, Google Ads, Meta, email automation, and AI tools like ChatGPT and Jasper. Google & Meta cert prep included.", "📣"),
+  page("salesforce-marketing-cloud", "Salesforce Marketing Cloud", "10 Weeks", "Intermediate", "Salesforce", "Email Studio, Journey Builder, AMPscript, Automation Studio — with Email Specialist certification preparation.", "📧"),
 ];
 
 export const coursePagesBySlug = Object.fromEntries(
