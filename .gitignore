@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 .output
+hostinger-deploy
+hostinger-deploy.zip
 .vinxi
 .tanstack/**
 .nitro

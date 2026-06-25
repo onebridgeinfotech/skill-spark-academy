@@ -5,5 +5,30 @@
 //     error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { coursePages } from "./src/lib/coursePages";
 
-export default defineConfig();
+const staticRoutes = [
+  "/",
+  "/about",
+  "/contact",
+  "/courses",
+  "/services",
+  "/why-choose-us",
+  "/generative-ai-course",
+  "/privacy",
+  "/security",
+  ...coursePages
+    .filter((c) => c.slug !== "generative-ai")
+    .map((c) => `/courses/${c.slug}`),
+];
+
+export default defineConfig({
+  cloudflare: false,
+  tanstackStart: {
+    prerender: {
+      enabled: true,
+      crawlLinks: true,
+      pages: staticRoutes.map((path) => ({ path })),
+    },
+  },
+});
