@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  --color-midnight: #010413;
+  --color-slate-surface: #0F172A;
+  --color-gold: #FBBF24;
+  --color-cobalt: #0055FF;
+  
+  --font-heading: var(--font-family-heading);
+  --font-body: var(--font-family-body);
+  --font-tech: var(--font-family-tech);
+}
+
+:root {
+  /* OneBridge High-Authority Palette */
+  --background: #010413;
+  --foreground: #FFFFFF;
+  
+  --primary: #0055FF;
+  --primary-foreground: #FFFFFF;
+  
+  --secondary: #0F172A;
+  --secondary-foreground: #94A3B8;
+  
+  --card: rgba(15, 23, 42, 0.6);
+  --card-foreground: #FFFFFF;
+  
+  --muted: #1E293B;
+  --muted-foreground: #94A3B8;
+  
+  --accent: #FBBF24;
+  --accent-foreground: #010413;
+  
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #FBBF24;
+
+  /* Industry Standard Tech Fonts */
+  --font-family-heading: "Outfit", system-ui, sans-serif;
+  --font-family-body: "Inter", system-ui, sans-serif;
+  --font-family-tech: "Space Grotesk", monospace;
+
+  --shadow-premium: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 0 30px rgba(251, 191, 36, 0.2);
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-family-body);
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-heading);
+    letter-spacing: -0.04em;
+    font-weight: 900;
+  }
+}
+
+@layer utilities {
+  .font-tech {
+    font-family: var(--font-family-tech);
+  }
+
+  .bg-bridge-gradient {
+    background: radial-gradient(circle at 10% 20%, rgba(0, 85, 255, 0.15), transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(251, 191, 36, 0.1), transparent 40%),
+                #010413;
+  }
+
+  .glass {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-header {
+    background: rgba(1, 4, 19, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .depth-lift {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .depth-lift:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 85, 255, 0.2);
+  }
+
+  .section-padding { @apply px-4 py-20 md:px-12 lg:px-24 lg:py-24; }
+  
+  .grid-pattern-bridge {
+    background-size: 60px 60px;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #010413; }
+::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #FBBF24; }
