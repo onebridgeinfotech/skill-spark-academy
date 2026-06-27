@@ -4,40 +4,136 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ismart Skills CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      color-scheme: light;
-      --bg: #f4f7fb;
-      --panel: #ffffff;
+      --bg: #eef2f8;
+      --surface: #ffffff;
+      --surface-2: #f8fafc;
       --text: #0f2744;
       --muted: #64748b;
       --brand: #004890;
+      --brand-dark: #003366;
       --accent: #ff9e0d;
+      --accent-soft: #fff4df;
       --border: #dbe4f0;
+      --success: #059669;
+      --success-soft: #ecfdf5;
+      --danger: #dc2626;
+      --danger-soft: #fef2f2;
+      --shadow: 0 4px 24px rgba(15, 39, 68, 0.08);
+      --radius: 14px;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Inter, system-ui, sans-serif;
+      font-family: "DM Sans", system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
+      line-height: 1.5;
     }
-    .wrap { max-width: 1400px; margin: 0 auto; padding: 24px; }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
+    .hidden { display: none !important; }
+    .wrap { max-width: 1480px; margin: 0 auto; padding: 20px; }
+
+    /* Login */
+    .login-shell {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
       padding: 24px;
-      box-shadow: 0 8px 30px rgba(15, 39, 68, 0.06);
+      background: linear-gradient(135deg, #003366 0%, #004890 50%, #0056a8 100%);
     }
-    h1 { margin: 0 0 8px; font-size: 1.75rem; }
-    .sub { color: var(--muted); margin-bottom: 24px; }
-    .login, .toolbar, .stats { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .login-card {
+      width: min(420px, 100%);
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 36px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+    }
+    .login-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .login-brand .mark {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--brand), #0066b3);
+      display: grid; place-items: center;
+      color: white; font-weight: 700; font-size: 18px;
+    }
+    .login-brand h1 { margin: 0; font-size: 1.35rem; }
+    .login-brand p { margin: 2px 0 0; color: var(--muted); font-size: 0.9rem; }
+
+    /* Header */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .topbar h1 { margin: 0; font-size: 1.6rem; font-weight: 700; }
+    .topbar .sub { color: var(--muted); font-size: 0.95rem; margin-top: 4px; }
+    .topbar-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+    }
+    .stat-card.accent { border-color: #fcd68d; background: linear-gradient(135deg, #fffbeb, #fff); }
+    .stat-card.brand { border-color: #93c5fd; background: linear-gradient(135deg, #eff6ff, #fff); }
+    .stat-card.success { border-color: #6ee7b7; background: linear-gradient(135deg, var(--success-soft), #fff); }
+    .stat-card span { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+    .stat-card strong { display: block; font-size: 1.75rem; font-weight: 700; margin-top: 6px; line-height: 1.1; }
+    .stat-card .money { color: var(--brand); }
+    .stat-card.success .money { color: var(--success); }
+
+    /* Panel */
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-2);
+      align-items: center;
+    }
+    .toolbar .grow { flex: 1; min-width: 200px; }
+
+    /* Form controls */
     input, select, textarea, button {
       font: inherit;
       border-radius: 10px;
       border: 1px solid var(--border);
-      padding: 10px 12px;
+      padding: 10px 14px;
+      background: white;
+      color: var(--text);
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid rgba(0, 72, 144, 0.2);
+      border-color: var(--brand);
     }
     button {
       background: var(--brand);
@@ -45,110 +141,254 @@
       border: none;
       cursor: pointer;
       font-weight: 600;
+      transition: background 0.15s, transform 0.1s;
     }
+    button:hover { background: var(--brand-dark); }
+    button:active { transform: scale(0.98); }
     button.secondary { background: white; color: var(--brand); border: 1px solid var(--border); }
-    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-    th, td { padding: 12px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
-    th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+    button.secondary:hover { background: var(--surface-2); }
+    button.accent { background: var(--accent); color: var(--text); }
+    button.accent:hover { background: #e88d00; }
+    button.ghost { background: transparent; color: var(--muted); border: none; padding: 8px 10px; }
+    button.ghost:hover { color: var(--brand); background: var(--surface-2); }
+
+    /* Table */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    tr:hover td { background: #fafcff; }
+    tr.overdue td { background: #fff8f0; }
+    .lead-name { font-weight: 600; color: var(--text); }
+    .lead-meta { font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
+    .lead-meta a { color: var(--brand); text-decoration: none; }
+    .lead-meta a:hover { text-decoration: underline; }
+
+    /* Badges */
     .badge {
-      display: inline-block;
-      padding: 4px 8px;
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
       border-radius: 999px;
-      font-size: 12px;
-      font-weight: 600;
-      background: #eef4ff;
-      color: var(--brand);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: capitalize;
+      white-space: nowrap;
     }
-    .badge.new { background: #fff4df; color: #9a6200; }
-    .badge.contacted { background: #e8f7ff; color: #0369a1; }
-    .badge.qualified { background: #ecfdf3; color: #047857; }
-    .badge.closed { background: #f1f5f9; color: #475569; }
-    .badge.spam { background: #fef2f2; color: #b91c1c; }
-    .hidden { display: none; }
-    .error { color: #b91c1c; margin-top: 12px; }
-    .stat {
+    .badge.new { background: var(--accent-soft); color: #9a6200; }
+    .badge.contacted { background: #e0f2fe; color: #0369a1; }
+    .badge.demo_scheduled { background: #ede9fe; color: #6d28d9; }
+    .badge.qualified { background: var(--success-soft); color: var(--success); }
+    .badge.proposal_sent { background: #fef3c7; color: #b45309; }
+    .badge.enrolled { background: #dbeafe; color: var(--brand); }
+    .badge.closed_lost { background: #f1f5f9; color: #475569; }
+    .badge.spam { background: var(--danger-soft); color: var(--danger); }
+    .badge.source { background: #f1f5f9; color: #475569; font-weight: 600; }
+    .badge.priority-high { background: var(--danger-soft); color: var(--danger); }
+    .badge.priority-medium { background: #fef3c7; color: #b45309; }
+    .badge.priority-low { background: #f1f5f9; color: #64748b; }
+
+    .money-cell { font-weight: 700; color: var(--brand); white-space: nowrap; }
+    .money-cell.zero { color: var(--muted); font-weight: 500; }
+    .course-cell { max-width: 200px; }
+    .course-cell strong { display: block; font-size: 0.9rem; }
+    .course-cell span { font-size: 0.8rem; color: var(--muted); }
+
+    .row-actions { display: flex; gap: 6px; }
+    .row-actions button { padding: 6px 12px; font-size: 0.85rem; }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--muted);
+    }
+    .empty-state strong { display: block; color: var(--text); font-size: 1.1rem; margin-bottom: 8px; }
+
+    .error-banner {
+      background: var(--danger-soft);
+      color: var(--danger);
+      padding: 12px 20px;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #fecaca;
+    }
+
+    /* Modal */
+    .overlay {
+      position: fixed; inset: 0;
+      background: rgba(15, 39, 68, 0.45);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: grid;
+      justify-content: end;
+    }
+    .drawer {
+      width: min(560px, 100vw);
+      height: 100vh;
+      background: var(--surface);
+      box-shadow: -8px 0 40px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      animation: slideIn 0.2s ease;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+    .drawer-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      background: linear-gradient(135deg, #f0f7ff, #fff);
+    }
+    .drawer-header h2 { margin: 0; font-size: 1.25rem; }
+    .drawer-header p { margin: 4px 0 0; color: var(--muted); font-size: 0.88rem; }
+    .drawer-body {
       flex: 1;
-      min-width: 140px;
-      background: #f8fbff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
+      overflow-y: auto;
+      padding: 20px 24px 100px;
     }
-    .stat strong { display: block; font-size: 1.5rem; margin-top: 4px; }
-    textarea.notes { width: 100%; min-height: 70px; resize: vertical; }
-    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
-    @media (max-width: 900px) {
-      table, thead, tbody, th, td, tr { display: block; }
-      thead { display: none; }
-      tr { margin-bottom: 16px; border: 1px solid var(--border); border-radius: 12px; padding: 8px; }
-      td { border: none; padding: 8px 12px; }
-      td::before {
-        content: attr(data-label);
-        display: block;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--muted);
-        margin-bottom: 4px;
-      }
+    .drawer-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      background: var(--surface-2);
+      position: sticky;
+      bottom: 0;
+    }
+
+    .form-section { margin-bottom: 24px; }
+    .form-section h3 {
+      margin: 0 0 14px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-weight: 700;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .form-grid .full { grid-column: 1 / -1; }
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    label input, label select, label textarea { font-weight: 400; color: var(--text); width: 100%; }
+    textarea { min-height: 90px; resize: vertical; }
+
+    @media (max-width: 768px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      th:nth-child(n+5), td:nth-child(n+5) { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div id="loginView" class="card">
-      <h1>Ismart Skills CRM</h1>
-      <p class="sub">Sign in with your admin password to manage website leads.</p>
-      <div class="login">
-        <input id="passwordInput" type="password" placeholder="Admin password" style="min-width: 280px;" />
-        <button id="loginBtn" type="button">Sign In</button>
+  <div id="loginView" class="login-shell">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="mark">IS</div>
+        <div>
+          <h1>Ismart Skills CRM</h1>
+          <p>IT Training Lead Management</p>
+        </div>
       </div>
-      <p id="loginError" class="error hidden"></p>
+      <label style="margin-bottom:12px;">
+        Admin password
+        <input id="passwordInput" type="password" placeholder="Enter CRM password" />
+      </label>
+      <button id="loginBtn" type="button" style="width:100%; padding:12px;">Sign In</button>
+      <p id="loginError" class="hidden" style="color:var(--danger); margin-top:14px; font-size:0.9rem;"></p>
     </div>
+  </div>
 
-    <div id="crmView" class="hidden">
-      <div class="card" style="margin-bottom: 16px;">
-        <div style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center;">
-          <div>
-            <h1>Lead CRM</h1>
-            <p class="sub" style="margin:0;">All enquiries from the website are captured here.</p>
-          </div>
+  <div id="crmView" class="hidden">
+    <div class="wrap">
+      <div class="topbar">
+        <div>
+          <h1>Lead CRM</h1>
+          <p class="sub">Track enquiries, courses, pipeline &amp; revenue for all IT training programmes.</p>
+        </div>
+        <div class="topbar-actions">
+          <button id="addLeadBtn" class="accent" type="button">+ Add Lead</button>
           <button id="logoutBtn" class="secondary" type="button">Sign Out</button>
         </div>
-        <div class="stats" id="stats"></div>
       </div>
 
-      <div class="card">
+      <div class="stats-grid" id="stats"></div>
+
+      <div class="panel">
         <div class="toolbar">
-          <input id="searchInput" type="search" placeholder="Search name, email, programme..." style="min-width:240px;" />
+          <input id="searchInput" class="grow" type="search" placeholder="Search name, email, company, course..." />
           <select id="statusFilter">
             <option value="">All statuses</option>
             <option value="new">New</option>
             <option value="contacted">Contacted</option>
+            <option value="demo_scheduled">Demo scheduled</option>
             <option value="qualified">Qualified</option>
-            <option value="closed">Closed</option>
+            <option value="proposal_sent">Proposal sent</option>
+            <option value="enrolled">Enrolled</option>
+            <option value="closed_lost">Closed lost</option>
             <option value="spam">Spam</option>
           </select>
           <select id="sourceFilter">
             <option value="">All sources</option>
-            <option value="homepage_enquiry">Homepage enquiry</option>
+            <option value="homepage_enquiry">Homepage</option>
             <option value="contact">Contact page</option>
+            <option value="brochure_download">Brochure</option>
             <option value="newsletter">Newsletter</option>
-            <option value="brochure_download">Brochure download</option>
+            <option value="manual">Manual entry</option>
+            <option value="phone">Phone call</option>
+            <option value="referral">Referral</option>
+            <option value="walk_in">Walk-in</option>
+            <option value="email">Email</option>
+            <option value="social">Social media</option>
+          </select>
+          <select id="courseFilter">
+            <option value="">All courses</option>
           </select>
           <button id="refreshBtn" type="button">Refresh</button>
         </div>
-        <p id="crmError" class="error hidden"></p>
-        <div style="overflow-x:auto;">
+        <p id="crmError" class="error-banner hidden"></p>
+        <div class="table-wrap">
           <table>
             <thead>
               <tr>
                 <th>Date</th>
+                <th>Lead</th>
+                <th>Course</th>
                 <th>Source</th>
-                <th>Contact</th>
-                <th>Details</th>
                 <th>Status</th>
-                <th>Notes</th>
+                <th>Deal value</th>
+                <th>Follow-up</th>
+                <th></th>
               </tr>
             </thead>
             <tbody id="leadsBody"></tbody>
@@ -158,207 +398,449 @@
     </div>
   </div>
 
+  <div id="drawerOverlay" class="overlay hidden">
+    <div class="drawer" role="dialog" aria-modal="true">
+      <div class="drawer-header">
+        <div>
+          <h2 id="drawerTitle">Edit Lead</h2>
+          <p id="drawerSub">Update contact, course, pipeline and revenue details.</p>
+        </div>
+        <button id="closeDrawerBtn" class="ghost" type="button" aria-label="Close">✕</button>
+      </div>
+      <div class="drawer-body">
+        <form id="leadForm">
+          <input type="hidden" id="f_id" />
+
+          <div class="form-section">
+            <h3>Contact</h3>
+            <div class="form-grid">
+              <label class="full">Full name *
+                <input id="f_name" required />
+              </label>
+              <label>Email *
+                <input id="f_email" type="email" required />
+              </label>
+              <label>Phone
+                <input id="f_phone" type="tel" />
+              </label>
+              <label>Company
+                <input id="f_company" />
+              </label>
+              <label>Job title
+                <input id="f_job_title" />
+              </label>
+              <label>Preferred contact
+                <select id="f_preferred_contact">
+                  <option value="">—</option>
+                  <option value="email">Email</option>
+                  <option value="phone">Phone</option>
+                  <option value="whatsapp">WhatsApp</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Course interest</h3>
+            <div class="form-grid">
+              <label class="full">Course
+                <select id="f_course_slug">
+                  <option value="">— Select course —</option>
+                </select>
+              </label>
+              <label>Enquiry type
+                <input id="f_enquiry_type" placeholder="e.g. Corporate batch, Individual" />
+              </label>
+              <label>Programme / batch
+                <input id="f_programme" />
+              </label>
+              <label class="full">Message
+                <textarea id="f_message"></textarea>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Pipeline</h3>
+            <div class="form-grid">
+              <label>Source
+                <select id="f_source">
+                  <option value="manual">Manual entry</option>
+                  <option value="homepage_enquiry">Homepage enquiry</option>
+                  <option value="contact">Contact page</option>
+                  <option value="brochure_download">Brochure download</option>
+                  <option value="newsletter">Newsletter</option>
+                  <option value="phone">Phone call</option>
+                  <option value="referral">Referral</option>
+                  <option value="walk_in">Walk-in</option>
+                  <option value="email">Email</option>
+                  <option value="social">Social media</option>
+                </select>
+              </label>
+              <label>Status
+                <select id="f_status">
+                  <option value="new">New</option>
+                  <option value="contacted">Contacted</option>
+                  <option value="demo_scheduled">Demo scheduled</option>
+                  <option value="qualified">Qualified</option>
+                  <option value="proposal_sent">Proposal sent</option>
+                  <option value="enrolled">Enrolled</option>
+                  <option value="closed_lost">Closed lost</option>
+                  <option value="spam">Spam</option>
+                </select>
+              </label>
+              <label>Priority
+                <select id="f_priority">
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </label>
+              <label>Assigned to
+                <input id="f_assigned_to" placeholder="Sales advisor name" />
+              </label>
+              <label>Follow-up date
+                <input id="f_follow_up_date" type="date" />
+              </label>
+              <label>Lost reason
+                <input id="f_lost_reason" placeholder="If closed lost" />
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Revenue &amp; payment</h3>
+            <div class="form-grid">
+              <label>Deal value (£)
+                <input id="f_deal_value" type="number" min="0" step="0.01" placeholder="0.00" />
+              </label>
+              <label>Payment status
+                <select id="f_payment_status">
+                  <option value="none">None</option>
+                  <option value="pending">Pending</option>
+                  <option value="deposit">Deposit received</option>
+                  <option value="partial">Partial payment</option>
+                  <option value="paid">Paid in full</option>
+                  <option value="refunded">Refunded</option>
+                </select>
+              </label>
+              <label>Funding type
+                <select id="f_funding_type">
+                  <option value="unknown">Unknown</option>
+                  <option value="self_funded">Self-funded</option>
+                  <option value="employer">Employer funded</option>
+                  <option value="government">Government / apprenticeship</option>
+                  <option value="instalment">Instalment plan</option>
+                </select>
+              </label>
+              <label>Enrollment date
+                <input id="f_enrollment_date" type="date" />
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Internal notes</h3>
+            <label class="full">
+              <textarea id="f_notes" placeholder="Call notes, next steps, objections..."></textarea>
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="drawer-footer">
+        <button id="cancelDrawerBtn" class="secondary" type="button">Cancel</button>
+        <button id="saveLeadBtn" type="button">Save Lead</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const TOKEN_KEY = "ismart_crm_token";
+    let courses = [];
 
-    const loginView = document.getElementById("loginView");
-    const crmView = document.getElementById("crmView");
-    const loginError = document.getElementById("loginError");
-    const crmError = document.getElementById("crmError");
-    const leadsBody = document.getElementById("leadsBody");
-    const stats = document.getElementById("stats");
+    const $ = (id) => document.getElementById(id);
 
-    function token() {
-      return sessionStorage.getItem(TOKEN_KEY);
-    }
-
+    function token() { return sessionStorage.getItem(TOKEN_KEY); }
     function authHeaders() {
-      return {
-        Authorization: `Bearer ${token()}`,
-        "Content-Type": "application/json",
-      };
+      return { Authorization: `Bearer ${token()}`, "Content-Type": "application/json" };
     }
 
     function showLogin() {
-      loginView.classList.remove("hidden");
-      crmView.classList.add("hidden");
+      $("loginView").classList.remove("hidden");
+      $("crmView").classList.add("hidden");
     }
-
     function showCrm() {
-      loginView.classList.add("hidden");
-      crmView.classList.remove("hidden");
+      $("loginView").classList.add("hidden");
+      $("crmView").classList.remove("hidden");
     }
 
     function formatDate(value) {
+      if (!value) return "—";
       return new Date(value).toLocaleString("en-GB", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
+        day: "2-digit", month: "short", year: "numeric",
+        hour: "2-digit", minute: "2-digit",
       });
     }
-
-    function sourceLabel(source) {
+    function formatDateShort(value) {
+      if (!value) return "—";
+      return new Date(value + "T00:00:00").toLocaleDateString("en-GB", {
+        day: "2-digit", month: "short", year: "numeric",
+      });
+    }
+    function formatMoney(value) {
+      const n = Number(value) || 0;
+      return n === 0 ? "—" : "£" + n.toLocaleString("en-GB", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+    }
+    function escapeHtml(v) {
+      return String(v || "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
+    }
+    function labelStatus(s) {
+      return String(s || "").replaceAll("_", " ");
+    }
+    function sourceLabel(s) {
       return ({
-        homepage_enquiry: "Homepage",
-        contact: "Contact",
-        newsletter: "Newsletter",
-        brochure_download: "Brochure",
-      })[source] || source;
+        homepage_enquiry: "Homepage", contact: "Contact", newsletter: "Newsletter",
+        brochure_download: "Brochure", manual: "Manual", phone: "Phone",
+        referral: "Referral", walk_in: "Walk-in", email: "Email", social: "Social",
+      })[s] || s;
+    }
+    function isOverdue(dateStr) {
+      if (!dateStr) return false;
+      const d = new Date(dateStr + "T00:00:00");
+      const today = new Date(); today.setHours(0,0,0,0);
+      return d < today;
+    }
+
+    function populateCourseSelects(courseList) {
+      courses = courseList || [];
+      const opts = courses.map((c) =>
+        `<option value="${escapeHtml(c.slug)}">${escapeHtml(c.name)}</option>`
+      ).join("");
+      $("courseFilter").innerHTML = `<option value="">All courses</option>${opts}`;
+      $("f_course_slug").innerHTML = `<option value="">— Select course —</option>${opts}`;
     }
 
     async function loadLeads() {
-      crmError.classList.add("hidden");
+      $("crmError").classList.add("hidden");
       const params = new URLSearchParams();
-      const status = document.getElementById("statusFilter").value;
-      const source = document.getElementById("sourceFilter").value;
-      const q = document.getElementById("searchInput").value.trim();
+      const status = $("statusFilter").value;
+      const source = $("sourceFilter").value;
+      const course = $("courseFilter").value;
+      const q = $("searchInput").value.trim();
       if (status) params.set("status", status);
       if (source) params.set("source", source);
+      if (course) params.set("course", course);
       if (q) params.set("q", q);
 
-      const res = await fetch(`/api/admin/leads?${params}`, {
-        headers: authHeaders(),
-      });
-
-      if (res.status === 401) {
-        sessionStorage.removeItem(TOKEN_KEY);
-        showLogin();
-        return;
-      }
+      const res = await fetch(`/api/admin/leads?${params}`, { headers: authHeaders() });
+      if (res.status === 401) { sessionStorage.removeItem(TOKEN_KEY); showLogin(); return; }
 
       const data = await res.json();
       if (!res.ok) {
-        crmError.textContent = data.error || "Failed to load leads.";
-        crmError.classList.remove("hidden");
+        $("crmError").textContent = data.error || "Failed to load leads.";
+        $("crmError").classList.remove("hidden");
         return;
       }
 
-      renderStats(data.leads);
+      if (data.courses) populateCourseSelects(data.courses);
+      renderStats(data.stats);
       renderLeads(data.leads);
     }
 
-    function renderStats(leads) {
-      const counts = { total: leads.length, new: 0, contacted: 0, qualified: 0 };
-      for (const lead of leads) {
-        if (counts[lead.status] !== undefined) counts[lead.status] += 1;
-      }
-
-      stats.innerHTML = `
-        <div class="stat"><span>Total shown</span><strong>${counts.total}</strong></div>
-        <div class="stat"><span>New</span><strong>${counts.new}</strong></div>
-        <div class="stat"><span>Contacted</span><strong>${counts.contacted}</strong></div>
-        <div class="stat"><span>Qualified</span><strong>${counts.qualified}</strong></div>
+    function renderStats(stats) {
+      if (!stats) return;
+      $("stats").innerHTML = `
+        <div class="stat-card"><span>Total leads</span><strong>${stats.total}</strong></div>
+        <div class="stat-card accent"><span>New</span><strong>${stats.new}</strong></div>
+        <div class="stat-card brand"><span>In pipeline</span><strong>${stats.inPipeline}</strong></div>
+        <div class="stat-card brand"><span>Pipeline value</span><strong class="money">${formatMoney(stats.pipelineValue)}</strong></div>
+        <div class="stat-card success"><span>Enrolled</span><strong>${stats.enrolled}</strong></div>
+        <div class="stat-card success"><span>Revenue won</span><strong class="money">${formatMoney(stats.revenueWon)}</strong></div>
       `;
     }
 
     function renderLeads(leads) {
-      leadsBody.innerHTML = leads.map((lead) => `
-        <tr data-id="${lead.id}">
-          <td data-label="Date">${formatDate(lead.created_at)}</td>
-          <td data-label="Source"><span class="badge">${sourceLabel(lead.source)}</span></td>
-          <td data-label="Contact">
-            <strong>${escapeHtml(lead.name)}</strong><br />
-            <a href="mailto:${escapeHtml(lead.email)}">${escapeHtml(lead.email)}</a><br />
-            ${lead.phone ? escapeHtml(lead.phone) : ""}
-          </td>
-          <td data-label="Details">
-            ${lead.enquiry_type ? `<div><strong>Type:</strong> ${escapeHtml(lead.enquiry_type)}</div>` : ""}
-            ${lead.programme ? `<div><strong>Programme:</strong> ${escapeHtml(lead.programme)}</div>` : ""}
-            ${lead.course_slug ? `<div><strong>Course:</strong> ${escapeHtml(lead.course_slug)}</div>` : ""}
-            ${lead.message ? `<div style="margin-top:8px;">${escapeHtml(lead.message)}</div>` : ""}
-            ${lead.page_url ? `<div style="margin-top:8px;"><a href="${escapeHtml(lead.page_url)}" target="_blank" rel="noopener">View page</a></div>` : ""}
-          </td>
-          <td data-label="Status">
-            <select class="status-select" data-id="${lead.id}">
-              ${["new","contacted","qualified","closed","spam"].map((status) =>
-                `<option value="${status}" ${lead.status === status ? "selected" : ""}>${status}</option>`
-              ).join("")}
-            </select>
-          </td>
-          <td data-label="Notes">
-            <textarea class="notes" data-id="${lead.id}">${escapeHtml(lead.notes || "")}</textarea>
-            <div class="actions" style="margin-top:8px;">
-              <button type="button" class="save-btn" data-id="${lead.id}">Save</button>
-            </div>
-          </td>
-        </tr>
-      `).join("");
-
-      leadsBody.querySelectorAll(".save-btn").forEach((btn) => {
-        btn.addEventListener("click", () => saveLead(btn.dataset.id));
-      });
-    }
-
-    function escapeHtml(value) {
-      return String(value || "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;");
-    }
-
-    async function saveLead(id) {
-      const row = leadsBody.querySelector(`tr[data-id="${id}"]`);
-      const status = row.querySelector(".status-select").value;
-      const notes = row.querySelector(".notes").value;
-
-      const res = await fetch(`/api/admin/leads/${id}`, {
-        method: "PATCH",
-        headers: authHeaders(),
-        body: JSON.stringify({ status, notes }),
-      });
-
-      if (!res.ok) {
-        const data = await res.json();
-        crmError.textContent = data.error || "Failed to save lead.";
-        crmError.classList.remove("hidden");
+      if (!leads.length) {
+        $("leadsBody").innerHTML = `<tr><td colspan="8"><div class="empty-state"><strong>No leads yet</strong>Add a lead manually or wait for website enquiries.</div></td></tr>`;
         return;
       }
 
+      $("leadsBody").innerHTML = leads.map((lead) => {
+        const overdue = isOverdue(lead.follow_up_date) && !["enrolled","closed_lost","spam"].includes(lead.status);
+        return `
+        <tr data-id="${lead.id}" class="${overdue ? "overdue" : ""}">
+          <td>${formatDate(lead.created_at)}</td>
+          <td>
+            <div class="lead-name">${escapeHtml(lead.name)}</div>
+            <div class="lead-meta">
+              <a href="mailto:${escapeHtml(lead.email)}">${escapeHtml(lead.email)}</a>
+              ${lead.phone ? " · " + escapeHtml(lead.phone) : ""}
+              ${lead.company ? "<br>" + escapeHtml(lead.company) : ""}
+            </div>
+            ${lead.priority === "high" ? '<span class="badge priority-high" style="margin-top:4px;">High priority</span>' : ""}
+          </td>
+          <td class="course-cell">
+            <strong>${escapeHtml(lead.course_name || lead.programme || "—")}</strong>
+            ${lead.course_category ? `<span>${escapeHtml(lead.course_category)}</span>` : ""}
+          </td>
+          <td><span class="badge source">${sourceLabel(lead.source)}</span></td>
+          <td><span class="badge ${lead.status}">${labelStatus(lead.status)}</span></td>
+          <td class="money-cell ${Number(lead.deal_value) ? "" : "zero"}">${formatMoney(lead.deal_value)}</td>
+          <td>${formatDateShort(lead.follow_up_date)}${overdue ? ' <span style="color:#b45309;font-size:11px;">Overdue</span>' : ""}</td>
+          <td>
+            <div class="row-actions">
+              <button type="button" class="secondary edit-btn" data-id="${lead.id}">Edit</button>
+            </div>
+          </td>
+        </tr>`;
+      }).join("");
+
+      document.querySelectorAll(".edit-btn").forEach((btn) => {
+        btn.addEventListener("click", () => openDrawer(Number(btn.dataset.id)));
+      });
+    }
+
+    function openDrawer(leadId) {
+      const isNew = !leadId;
+      $("drawerTitle").textContent = isNew ? "Add Lead" : "Edit Lead";
+      $("drawerSub").textContent = isNew
+        ? "Manually add a walk-in, phone, or referral lead."
+        : "Update contact, course, pipeline and revenue details.";
+      $("f_id").value = isNew ? "" : leadId;
+
+      if (isNew) {
+        $("leadForm").reset();
+        $("f_source").value = "manual";
+        $("f_status").value = "new";
+        $("f_priority").value = "medium";
+        $("f_payment_status").value = "none";
+        $("f_funding_type").value = "unknown";
+        $("drawerOverlay").classList.remove("hidden");
+        return;
+      }
+
+      fetch(`/api/admin/leads/${leadId}`, { headers: authHeaders() })
+        .then((r) => r.json())
+        .then((data) => {
+          if (!data.lead) return;
+          fillForm(data.lead);
+          if (data.courses) populateCourseSelects(data.courses);
+          $("drawerOverlay").classList.remove("hidden");
+        });
+    }
+
+    function fillForm(lead) {
+      $("f_name").value = lead.name || "";
+      $("f_email").value = lead.email || "";
+      $("f_phone").value = lead.phone || "";
+      $("f_company").value = lead.company || "";
+      $("f_job_title").value = lead.job_title || "";
+      $("f_preferred_contact").value = lead.preferred_contact || "";
+      $("f_course_slug").value = lead.course_slug || "";
+      $("f_enquiry_type").value = lead.enquiry_type || "";
+      $("f_programme").value = lead.programme || "";
+      $("f_message").value = lead.message || "";
+      $("f_source").value = lead.source || "manual";
+      $("f_status").value = lead.status || "new";
+      $("f_priority").value = lead.priority || "medium";
+      $("f_assigned_to").value = lead.assigned_to || "";
+      $("f_follow_up_date").value = lead.follow_up_date ? lead.follow_up_date.slice(0, 10) : "";
+      $("f_lost_reason").value = lead.lost_reason || "";
+      $("f_deal_value").value = lead.deal_value || "";
+      $("f_payment_status").value = lead.payment_status || "none";
+      $("f_funding_type").value = lead.funding_type || "unknown";
+      $("f_enrollment_date").value = lead.enrollment_date ? lead.enrollment_date.slice(0, 10) : "";
+      $("f_notes").value = lead.notes || "";
+    }
+
+    function closeDrawer() {
+      $("drawerOverlay").classList.add("hidden");
+    }
+
+    function collectForm() {
+      return {
+        name: $("f_name").value.trim(),
+        email: $("f_email").value.trim(),
+        phone: $("f_phone").value.trim(),
+        company: $("f_company").value.trim(),
+        jobTitle: $("f_job_title").value.trim(),
+        preferredContact: $("f_preferred_contact").value,
+        courseSlug: $("f_course_slug").value,
+        enquiryType: $("f_enquiry_type").value.trim(),
+        programme: $("f_programme").value.trim(),
+        message: $("f_message").value.trim(),
+        source: $("f_source").value,
+        status: $("f_status").value,
+        priority: $("f_priority").value,
+        assignedTo: $("f_assigned_to").value.trim(),
+        followUpDate: $("f_follow_up_date").value || null,
+        lostReason: $("f_lost_reason").value.trim(),
+        dealValue: $("f_deal_value").value,
+        paymentStatus: $("f_payment_status").value,
+        fundingType: $("f_funding_type").value,
+        enrollmentDate: $("f_enrollment_date").value || null,
+        notes: $("f_notes").value.trim(),
+      };
+    }
+
+    async function saveLead() {
+      const id = $("f_id").value;
+      const payload = collectForm();
+      if (!payload.name || !payload.email) {
+        alert("Name and email are required.");
+        return;
+      }
+
+      const url = id ? `/api/admin/leads/${id}` : "/api/admin/leads";
+      const method = id ? "PATCH" : "POST";
+
+      const res = await fetch(url, {
+        method,
+        headers: authHeaders(),
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.error || "Failed to save lead.");
+        return;
+      }
+
+      closeDrawer();
       await loadLeads();
     }
 
-    document.getElementById("loginBtn").addEventListener("click", async () => {
-      loginError.classList.add("hidden");
-      const password = document.getElementById("passwordInput").value;
-      sessionStorage.setItem(TOKEN_KEY, password);
-
-      const res = await fetch("/api/admin/leads?limit=1", {
-        headers: authHeaders(),
-      });
-
+    $("loginBtn").addEventListener("click", async () => {
+      $("loginError").classList.add("hidden");
+      sessionStorage.setItem(TOKEN_KEY, $("passwordInput").value);
+      const res = await fetch("/api/admin/leads?limit=1", { headers: authHeaders() });
       if (res.status === 401) {
         sessionStorage.removeItem(TOKEN_KEY);
-        loginError.textContent = "Invalid admin password.";
-        loginError.classList.remove("hidden");
+        $("loginError").textContent = "Invalid admin password.";
+        $("loginError").classList.remove("hidden");
         return;
       }
-
       showCrm();
       await loadLeads();
     });
 
-    document.getElementById("logoutBtn").addEventListener("click", () => {
-      sessionStorage.removeItem(TOKEN_KEY);
-      showLogin();
-    });
+    $("logoutBtn").addEventListener("click", () => { sessionStorage.removeItem(TOKEN_KEY); showLogin(); });
+    $("refreshBtn").addEventListener("click", loadLeads);
+    $("addLeadBtn").addEventListener("click", () => openDrawer(null));
+    $("closeDrawerBtn").addEventListener("click", closeDrawer);
+    $("cancelDrawerBtn").addEventListener("click", closeDrawer);
+    $("saveLeadBtn").addEventListener("click", saveLead);
+    $("drawerOverlay").addEventListener("click", (e) => { if (e.target === $("drawerOverlay")) closeDrawer(); });
 
-    document.getElementById("refreshBtn").addEventListener("click", loadLeads);
-    document.getElementById("statusFilter").addEventListener("change", loadLeads);
-    document.getElementById("sourceFilter").addEventListener("change", loadLeads);
-    document.getElementById("searchInput").addEventListener("input", () => {
+    $("statusFilter").addEventListener("change", loadLeads);
+    $("sourceFilter").addEventListener("change", loadLeads);
+    $("courseFilter").addEventListener("change", loadLeads);
+    $("searchInput").addEventListener("input", () => {
       clearTimeout(window.__crmSearchTimer);
       window.__crmSearchTimer = setTimeout(loadLeads, 300);
     });
 
-    if (token()) {
-      showCrm();
-      loadLeads();
-    } else {
-      showLogin();
-    }
+    if (token()) { showCrm(); loadLeads(); } else { showLogin(); }
   </script>
 </body>
 </html>

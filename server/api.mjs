@@ -1,7 +1,14 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { createLead, listLeads, updateLead } from "./handlers/leads.mjs";
+import {
+  createLead,
+  createAdminLead,
+  listLeads,
+  getLead,
+  updateLead,
+  listCourses,
+} from "./handlers/leads.mjs";
 import { isAdminAuthorized, sendJson } from "./utils.mjs";
 import { isDbConfigured, pingDb } from "./db.mjs";
 
@@ -58,6 +65,15 @@ export async function handleApiRequest(req, res, url) {
     return true;
   }
 
+  if (pathname === "/api/admin/courses" && req.method === "GET") {
+    if (!isAdminAuthorized(req)) {
+      sendJson(res, 401, { error: "Unauthorized" });
+      return true;
+    }
+    listCourses(req, res);
+    return true;
+  }
+
   if (pathname === "/api/admin/leads") {
     if (!isAdminAuthorized(req)) {
       sendJson(res, 401, { error: "Unauthorized" });
@@ -68,17 +84,31 @@ export async function handleApiRequest(req, res, url) {
       await listLeads(req, res, url);
       return true;
     }
+
+    if (req.method === "POST") {
+      await createAdminLead(req, res);
+      return true;
+    }
   }
 
   const leadMatch = pathname.match(/^\/api\/admin\/leads\/(\d+)$/);
-  if (leadMatch && req.method === "PATCH") {
+  if (leadMatch) {
     if (!isAdminAuthorized(req)) {
       sendJson(res, 401, { error: "Unauthorized" });
       return true;
     }
 
-    await updateLead(req, res, Number(leadMatch[1]));
-    return true;
+    const leadId = Number(leadMatch[1]);
+
+    if (req.method === "GET") {
+      await getLead(req, res, leadId);
+      return true;
+    }
+
+    if (req.method === "PATCH") {
+      await updateLead(req, res, leadId);
+      return true;
+    }
   }
 
   return false;
