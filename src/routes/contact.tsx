@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin, MessageCircle, Send, Globe, Zap, ArrowRight, Shield } from "lucide-react";
 import { siteConfig, getWhatsAppUrl } from "@/lib/siteConfig";
+import { submitLead } from "@/lib/submitLead";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -19,11 +20,27 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", track: "General Inquiry", message: "" });
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Inquiry Logged. Technical Triage starting - expectation: 12 minutes.");
-    setForm({ name: "", email: "", phone: "", track: "General Inquiry", message: "" });
+    setSubmitting(true);
+    try {
+      const result = await submitLead({
+        source: "contact",
+        name: form.name,
+        email: form.email,
+        phone: form.phone || undefined,
+        programme: form.track,
+        message: form.message,
+      });
+      alert(result.message || "Thank you. Our team will respond within 12 minutes.");
+      setForm({ name: "", email: "", phone: "", track: "General Inquiry", message: "" });
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Unable to send your message.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -170,8 +187,8 @@ function ContactPage() {
                       />
                   </div>
 
-                  <Button type="submit" className="w-full h-14 bg-[#FF9E0D] hover:bg-amber-500 text-white rounded-2xl font-bold text-base shadow-xl transition-all group active:scale-[0.98] flex items-center justify-center gap-3 mt-2">
-                    Send Message <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <Button type="submit" disabled={submitting} className="w-full h-14 bg-[#FF9E0D] hover:bg-amber-500 text-white rounded-2xl font-bold text-base shadow-xl transition-all group active:scale-[0.98] flex items-center justify-center gap-3 mt-2">
+                    {submitting ? "Sending..." : "Send Message"} <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
 
                   <div className="flex items-center justify-center gap-3 pt-4 border-t border-white/5 opacity-40">

@@ -8,6 +8,7 @@ import {
   Layers, Database, MapPin, X, Globe, Calendar, Clock, BookOpen,
   ArrowRight, ShieldCheck, Target, Headphones, Play, BadgeCheck
 } from "lucide-react";
+import { submitLead } from "@/lib/submitLead";
 
 // ── Data (unchanged) ────────────────────────────────────────────────────────
 
@@ -92,6 +93,31 @@ export function GenerativeAICourse() {
   const [activeTab, setActiveTab] = useState("overview");
   const [scrolled, setScrolled]   = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalName, setModalName] = useState("");
+  const [modalEmail, setModalEmail] = useState("");
+  const [brochureSubmitting, setBrochureSubmitting] = useState(false);
+
+  const handleBrochureSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBrochureSubmitting(true);
+    try {
+      const result = await submitLead({
+        source: "brochure_download",
+        name: modalName,
+        email: modalEmail,
+        courseSlug: "generative-ai",
+        programme: "Generative AI & LLM Masterclass",
+      });
+      alert(result.message || "Brochure request received. We'll email you shortly.");
+      setModalName("");
+      setModalEmail("");
+      setIsModalOpen(false);
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Unable to submit brochure request.");
+    } finally {
+      setBrochureSubmitting(false);
+    }
+  };
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 200);
@@ -783,17 +809,17 @@ export function GenerativeAICourse() {
                 <h3 className="text-2xl font-bold font-heading text-[#004890] mb-1">Download the Brochure</h3>
                 <p className="text-slate-500 text-sm mb-6">Get the full programme syllabus, pricing, and intake dates sent directly to your inbox.</p>
 
-                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                <form className="space-y-4" onSubmit={handleBrochureSubmit}>
                   <div className="space-y-1.5">
                     <label className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Full Name *</label>
-                    <input type="text" placeholder="Jane Smith" required className="w-full rounded-xl px-4 py-3 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#004890]/30 transition-all" style={{ background: "#f8faff", border: "1px solid #e2eaf8" }} />
+                    <input type="text" placeholder="Jane Smith" required value={modalName} onChange={(e) => setModalName(e.target.value)} className="w-full rounded-xl px-4 py-3 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#004890]/30 transition-all" style={{ background: "#f8faff", border: "1px solid #e2eaf8" }} />
                   </div>
                   <div className="space-y-1.5">
                     <label className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Email Address *</label>
-                    <input type="email" placeholder="jane@company.com" required className="w-full rounded-xl px-4 py-3 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#004890]/30 transition-all" style={{ background: "#f8faff", border: "1px solid #e2eaf8" }} />
+                    <input type="email" placeholder="jane@company.com" required value={modalEmail} onChange={(e) => setModalEmail(e.target.value)} className="w-full rounded-xl px-4 py-3 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#004890]/30 transition-all" style={{ background: "#f8faff", border: "1px solid #e2eaf8" }} />
                   </div>
-                  <Button type="submit" className="w-full h-11 font-semibold rounded-xl text-sm gap-2 shadow-md mt-2" style={{ background: "linear-gradient(135deg,#FF9E0D,#e68d08)", color: "#ffffff" }}>
-                    Send Me the Brochure <ArrowRight className="w-4 h-4" />
+                  <Button type="submit" disabled={brochureSubmitting} className="w-full h-11 font-semibold rounded-xl text-sm gap-2 shadow-md mt-2" style={{ background: "linear-gradient(135deg,#FF9E0D,#e68d08)", color: "#ffffff" }}>
+                    {brochureSubmitting ? "Sending..." : "Send Me the Brochure"} <ArrowRight className="w-4 h-4" />
                   </Button>
                   <p className="text-center text-slate-400 text-xs">We'll send it within 2 minutes. No spam, ever.</p>
                 </form>

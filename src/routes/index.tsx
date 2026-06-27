@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CourseCard } from "@/components/CourseCard";
 import { courses } from "@/lib/courses";
 import { siteConfig, getWhatsAppUrl } from "@/lib/siteConfig";
+import { submitLead } from "@/lib/submitLead";
 import {
   ArrowRight, Users, Award, Clock, CheckCircle,
   Globe, Target, Shield, Rocket, GraduationCap,
@@ -335,8 +336,46 @@ function PartnerLogo({ partner }: { partner: Partner }) {
 
 function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("All Programmes");
+  const [leadForm, setLeadForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    enquiryType: "",
+    programme: "",
+    message: "",
+  });
+  const [leadSubmitting, setLeadSubmitting] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+
+  const handleLeadSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLeadSubmitting(true);
+    try {
+      const result = await submitLead({
+        source: "homepage_enquiry",
+        name: leadForm.name,
+        email: leadForm.email,
+        phone: leadForm.phone || undefined,
+        enquiryType: leadForm.enquiryType || undefined,
+        programme: leadForm.programme || undefined,
+        message: leadForm.message || undefined,
+      });
+      alert(result.message || "Thank you. Our team will be in touch shortly.");
+      setLeadForm({
+        name: "",
+        email: "",
+        phone: "",
+        enquiryType: "",
+        programme: "",
+        message: "",
+      });
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Unable to submit enquiry.");
+    } finally {
+      setLeadSubmitting(false);
+    }
+  };
 
   const filteredCourses = courses.filter((c) => {
     if (selectedCategory === "All Programmes") return true;
@@ -1132,26 +1171,26 @@ function HomePage() {
                 <h3 className="text-2xl font-bold font-heading text-white mb-1">Enquire or Enrol</h3>
                 <p className="text-white/45 text-sm mb-8">We'll match you to the right programme and respond within 12 minutes.</p>
 
-                <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                <form className="space-y-5" onSubmit={handleLeadSubmit}>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-semibold text-white/45 uppercase tracking-wide">Full Name *</label>
-                      <input type="text" placeholder="Jane Smith" className="field" required />
+                      <input type="text" placeholder="Jane Smith" className="field" required value={leadForm.name} onChange={(e) => setLeadForm((p) => ({ ...p, name: e.target.value }))} />
                     </div>
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-semibold text-white/45 uppercase tracking-wide">Email Address *</label>
-                      <input type="email" placeholder="jane@company.com" className="field" required />
+                      <input type="email" placeholder="jane@company.com" className="field" required value={leadForm.email} onChange={(e) => setLeadForm((p) => ({ ...p, email: e.target.value }))} />
                     </div>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-semibold text-white/45 uppercase tracking-wide">Phone Number</label>
-                      <input type="tel" placeholder="+44 7700 000000" className="field" />
+                      <input type="tel" placeholder="+44 7700 000000" className="field" value={leadForm.phone} onChange={(e) => setLeadForm((p) => ({ ...p, phone: e.target.value }))} />
                     </div>
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-semibold text-white/45 uppercase tracking-wide">Enquiry Type</label>
-                      <select className="field">
+                      <select className="field" value={leadForm.enquiryType} onChange={(e) => setLeadForm((p) => ({ ...p, enquiryType: e.target.value }))}>
                         <option value="">Select...</option>
                         <option>Individual Training</option>
                         <option>Corporate / Team Training</option>
@@ -1163,7 +1202,7 @@ function HomePage() {
 
                   <div className="space-y-1.5">
                     <label className="text-[10px] font-semibold text-white/45 uppercase tracking-wide">Programme of Interest</label>
-                    <select className="field">
+                    <select className="field" value={leadForm.programme} onChange={(e) => setLeadForm((p) => ({ ...p, programme: e.target.value }))}>
                       <option value="">Select a programme</option>
                       <option>AWS Solutions Architect</option>
                       <option>Microsoft Azure Administration</option>
@@ -1178,11 +1217,11 @@ function HomePage() {
 
                   <div className="space-y-1.5">
                     <label className="text-[10px] font-semibold text-white/45 uppercase tracking-wide">Message (optional)</label>
-                    <textarea rows={3} placeholder="Tell us about your background, goals, or team size..." className="field resize-none" />
+                    <textarea rows={3} placeholder="Tell us about your background, goals, or team size..." className="field resize-none" value={leadForm.message} onChange={(e) => setLeadForm((p) => ({ ...p, message: e.target.value }))} />
                   </div>
 
-                  <Button type="submit" className="w-full h-12 bg-[#FF9E0D] hover:bg-[#e68d08] text-white font-semibold rounded-lg shadow-md gap-2 text-sm mt-1">
-                    Submit Enquiry <ArrowRight className="w-4 h-4" />
+                  <Button type="submit" disabled={leadSubmitting} className="w-full h-12 bg-[#FF9E0D] hover:bg-[#e68d08] text-white font-semibold rounded-lg shadow-md gap-2 text-sm mt-1">
+                    {leadSubmitting ? "Submitting..." : "Submit Enquiry"} <ArrowRight className="w-4 h-4" />
                   </Button>
 
                   <p className="text-center text-white/25 text-xs flex items-center justify-center gap-1.5">

@@ -1,10 +1,12 @@
 import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   Linkedin, Youtube, Instagram,
   Shield, ChevronRight, ArrowUpRight
 } from "lucide-react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { siteConfig } from "@/lib/siteConfig";
+import { submitLead } from "@/lib/submitLead";
 
 type SocialIconProps = {
   className?: string;
@@ -76,6 +78,25 @@ function FooterSection({ title, children }: { title: string; children: React.Rea
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterSubmitting, setNewsletterSubmitting] = useState(false);
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setNewsletterSubmitting(true);
+    try {
+      const result = await submitLead({
+        source: "newsletter",
+        email: newsletterEmail,
+      });
+      alert(result.message || "Thanks for subscribing.");
+      setNewsletterEmail("");
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Unable to subscribe right now.");
+    } finally {
+      setNewsletterSubmitting(false);
+    }
+  };
 
   return (
     <footer className="bg-[#002d5c] text-white">
@@ -195,19 +216,23 @@ export function Footer() {
             <p className="text-xs text-white/40 leading-relaxed mb-4">
               Industry insights, new courses, and career tips — delivered monthly.
             </p>
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-2">
-              <input
-                type="email"
-                placeholder="Work email address"
-                className="w-full bg-white/6 border border-white/10 rounded-lg py-2.5 px-3.5 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FF9E0D]/60 transition-colors"
-              />
-              <button
-                type="submit"
-                className="w-full py-2.5 px-3.5 rounded-lg bg-[#004890] hover:bg-[#0057ab] text-white text-sm font-semibold transition-colors flex items-center justify-center gap-2"
-              >
-                Subscribe <ArrowUpRight className="w-3.5 h-3.5" />
-              </button>
-            </form>
+            <form onSubmit={handleNewsletterSubmit} className="space-y-2">
+                <input
+                  type="email"
+                  placeholder="Work email address"
+                  required
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  className="w-full bg-white/6 border border-white/10 rounded-lg py-2.5 px-3.5 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#FF9E0D]/60 transition-colors"
+                />
+                <button
+                  type="submit"
+                  disabled={newsletterSubmitting}
+                  className="w-full py-2.5 px-3.5 rounded-lg bg-[#004890] hover:bg-[#0057ab] disabled:opacity-70 text-white text-sm font-semibold transition-colors flex items-center justify-center gap-2"
+                >
+                  {newsletterSubmitting ? "Subscribing..." : "Subscribe"} <ArrowUpRight className="w-3.5 h-3.5" />
+                </button>
+              </form>
             <p className="flex items-center gap-1.5 text-white/25 text-[11px] mt-2.5">
               <Shield className="w-3 h-3" /> No spam. Unsubscribe anytime.
             </p>
