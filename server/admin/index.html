@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ismart Skills CRM</title>
+  <title>CRM — Ismart Skills</title>
+  <link rel="icon" href="/images/ismart-skills-logo-trimmed.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
@@ -16,6 +17,7 @@
       --muted: #64748b;
       --brand: #004890;
       --brand-dark: #003366;
+      --signal: #4da3d9;
       --accent: #ff9e0d;
       --accent-soft: #fff4df;
       --border: #dbe4f0;
@@ -35,7 +37,6 @@
       line-height: 1.5;
     }
     .hidden { display: none !important; }
-    .wrap { max-width: 1480px; margin: 0 auto; padding: 20px; }
 
     /* Login */
     .login-shell {
@@ -43,65 +44,215 @@
       display: grid;
       place-items: center;
       padding: 24px;
-      background: linear-gradient(135deg, #003366 0%, #004890 50%, #0056a8 100%);
+      background: linear-gradient(145deg, #003366 0%, #004890 45%, #0056a8 100%);
     }
     .login-card {
-      width: min(420px, 100%);
+      width: min(440px, 100%);
       background: var(--surface);
-      border-radius: 20px;
-      padding: 36px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+      border-radius: 22px;
+      padding: 40px 36px 32px;
+      box-shadow: 0 28px 70px rgba(0,0,0,0.28);
     }
-    .login-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-    .login-brand .mark {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--brand), #0066b3);
-      display: grid; place-items: center;
-      color: white; font-weight: 700; font-size: 18px;
-    }
-    .login-brand h1 { margin: 0; font-size: 1.35rem; }
-    .login-brand p { margin: 2px 0 0; color: var(--muted); font-size: 0.9rem; }
-
-    /* Header */
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
+    .login-logo {
+      height: 56px;
+      width: auto;
+      max-width: 220px;
+      object-fit: contain;
       margin-bottom: 20px;
     }
-    .topbar h1 { margin: 0; font-size: 1.6rem; font-weight: 700; }
-    .topbar .sub { color: var(--muted); font-size: 0.95rem; margin-top: 4px; }
-    .topbar-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .login-card h1 { margin: 0 0 6px; font-size: 1.5rem; color: var(--brand); }
+    .login-card .tagline { color: var(--accent); font-weight: 600; font-size: 0.92rem; margin-bottom: 8px; }
+    .login-card .desc { color: var(--muted); font-size: 0.92rem; margin-bottom: 24px; }
+    .login-footer {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .login-footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+    /* App shell */
+    .app-header {
+      background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 100%);
+      color: white;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 4px 20px rgba(0, 51, 102, 0.25);
+    }
+    .app-header-inner {
+      max-width: 1480px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+      flex-wrap: wrap;
+      padding: 10px 0;
+    }
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-block img {
+      height: 42px;
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+    .brand-block .brand-text strong { display: block; font-size: 1.05rem; line-height: 1.2; }
+    .brand-block .brand-text span { font-size: 0.78rem; opacity: 0.85; color: #cce4ff; }
+    .header-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .header-actions button {
+      border-radius: 10px;
+      padding: 9px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      font: inherit;
+    }
+    .btn-accent { background: var(--accent); color: var(--text); }
+    .btn-accent:hover { background: #e88d00; }
+    .btn-ghost-light {
+      background: rgba(255,255,255,0.12);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .btn-ghost-light:hover { background: rgba(255,255,255,0.2); }
+
+    .wrap { max-width: 1480px; margin: 0 auto; padding: 22px 20px 40px; }
+
+    .page-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .page-intro h2 { margin: 0; font-size: 1.35rem; }
+    .page-intro p { margin: 4px 0 0; color: var(--muted); font-size: 0.92rem; }
+    .last-sync { font-size: 0.82rem; color: var(--muted); }
+
+    /* Alert strip */
+    .alert-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      background: linear-gradient(90deg, #fff7ed, #fffbeb);
+      border: 1px solid #fcd34d;
+      border-radius: var(--radius);
+      padding: 12px 18px;
+      margin-bottom: 16px;
+      font-size: 0.92rem;
+    }
+    .alert-strip strong { color: #b45309; }
+    .alert-strip.danger {
+      background: linear-gradient(90deg, #fef2f2, #fff);
+      border-color: #fca5a5;
+    }
+    .alert-strip.danger strong { color: var(--danger); }
+
+    /* Quick filters */
+    .quick-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .chip {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .chip:hover { border-color: var(--brand); color: var(--brand); }
+    .chip.active {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: white;
+    }
 
     /* Stats */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 14px;
-      margin-bottom: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
     }
     .stat-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 18px 20px;
+      padding: 16px 18px;
       box-shadow: var(--shadow);
     }
-    .stat-card.accent { border-color: #fcd68d; background: linear-gradient(135deg, #fffbeb, #fff); }
-    .stat-card.brand { border-color: #93c5fd; background: linear-gradient(135deg, #eff6ff, #fff); }
-    .stat-card.success { border-color: #6ee7b7; background: linear-gradient(135deg, var(--success-soft), #fff); }
-    .stat-card span { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
-    .stat-card strong { display: block; font-size: 1.75rem; font-weight: 700; margin-top: 6px; line-height: 1.1; }
+    .stat-card.accent { border-left: 4px solid var(--accent); }
+    .stat-card.brand { border-left: 4px solid var(--brand); }
+    .stat-card.success { border-left: 4px solid var(--success); }
+    .stat-card.warn { border-left: 4px solid #f59e0b; }
+    .stat-card span { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+    .stat-card strong { display: block; font-size: 1.65rem; font-weight: 700; margin-top: 4px; line-height: 1.1; }
     .stat-card .money { color: var(--brand); }
     .stat-card.success .money { color: var(--success); }
+
+    .insights-row {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 900px) { .insights-row { grid-template-columns: 1fr; } }
+
+    .course-insights {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+    }
+    .course-insights h3 {
+      margin: 0 0 12px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+    }
+    .course-bar { margin-bottom: 8px; }
+    .course-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      margin-bottom: 4px;
+      gap: 8px;
+    }
+    .course-bar-label span:last-child { color: var(--muted); flex-shrink: 0; }
+    .course-bar-track {
+      height: 6px;
+      background: var(--surface-2);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .course-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--brand), var(--signal));
+      border-radius: 999px;
+    }
 
     /* Panel */
     .panel {
@@ -115,14 +266,13 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      padding: 16px 20px;
+      padding: 14px 18px;
       border-bottom: 1px solid var(--border);
       background: var(--surface-2);
       align-items: center;
     }
     .toolbar .grow { flex: 1; min-width: 200px; }
 
-    /* Form controls */
     input, select, textarea, button {
       font: inherit;
       border-radius: 10px;
@@ -147,17 +297,14 @@
     button:active { transform: scale(0.98); }
     button.secondary { background: white; color: var(--brand); border: 1px solid var(--border); }
     button.secondary:hover { background: var(--surface-2); }
-    button.accent { background: var(--accent); color: var(--text); }
-    button.accent:hover { background: #e88d00; }
     button.ghost { background: transparent; color: var(--muted); border: none; padding: 8px 10px; }
     button.ghost:hover { color: var(--brand); background: var(--surface-2); }
 
-    /* Table */
     .table-wrap { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
     th {
       text-align: left;
-      padding: 12px 16px;
+      padding: 11px 16px;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.07em;
@@ -167,18 +314,20 @@
       white-space: nowrap;
     }
     td {
-      padding: 14px 16px;
+      padding: 13px 16px;
       border-bottom: 1px solid var(--border);
       vertical-align: middle;
     }
-    tr:hover td { background: #fafcff; }
+    tbody tr { cursor: pointer; transition: background 0.12s; }
+    tbody tr:hover td { background: #f5f9ff; }
     tr.overdue td { background: #fff8f0; }
+    tr.overdue:hover td { background: #fff3e6; }
     .lead-name { font-weight: 600; color: var(--text); }
     .lead-meta { font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
     .lead-meta a { color: var(--brand); text-decoration: none; }
     .lead-meta a:hover { text-decoration: underline; }
+    .wa-link { color: #25d366 !important; font-weight: 600; }
 
-    /* Badges */
     .badge {
       display: inline-flex;
       align-items: center;
@@ -199,8 +348,6 @@
     .badge.spam { background: var(--danger-soft); color: var(--danger); }
     .badge.source { background: #f1f5f9; color: #475569; font-weight: 600; }
     .badge.priority-high { background: var(--danger-soft); color: var(--danger); }
-    .badge.priority-medium { background: #fef3c7; color: #b45309; }
-    .badge.priority-low { background: #f1f5f9; color: #64748b; }
 
     .money-cell { font-weight: 700; color: var(--brand); white-space: nowrap; }
     .money-cell.zero { color: var(--muted); font-weight: 500; }
@@ -208,15 +355,14 @@
     .course-cell strong { display: block; font-size: 0.9rem; }
     .course-cell span { font-size: 0.8rem; color: var(--muted); }
 
-    .row-actions { display: flex; gap: 6px; }
-    .row-actions button { padding: 6px 12px; font-size: 0.85rem; }
-
     .empty-state {
       text-align: center;
-      padding: 60px 24px;
+      padding: 56px 24px;
       color: var(--muted);
     }
-    .empty-state strong { display: block; color: var(--text); font-size: 1.1rem; margin-bottom: 8px; }
+    .empty-state strong { display: block; color: var(--text); font-size: 1.15rem; margin-bottom: 8px; }
+    .empty-state p { margin: 0 0 20px; max-width: 360px; margin-left: auto; margin-right: auto; }
+    .empty-logo { height: 48px; opacity: 0.5; margin-bottom: 16px; }
 
     .error-banner {
       background: var(--danger-soft);
@@ -226,7 +372,35 @@
       border-bottom: 1px solid #fecaca;
     }
 
-    /* Modal */
+    .app-footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .app-footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--brand-dark);
+      color: white;
+      padding: 14px 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      z-index: 200;
+      animation: toastIn 0.25s ease;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Drawer */
     .overlay {
       position: fixed; inset: 0;
       background: rgba(15, 39, 68, 0.45);
@@ -257,13 +431,9 @@
       gap: 12px;
       background: linear-gradient(135deg, #f0f7ff, #fff);
     }
-    .drawer-header h2 { margin: 0; font-size: 1.25rem; }
+    .drawer-header h2 { margin: 0; font-size: 1.25rem; color: var(--brand); }
     .drawer-header p { margin: 4px 0 0; color: var(--muted); font-size: 0.88rem; }
-    .drawer-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 20px 24px 100px;
-    }
+    .drawer-body { flex: 1; overflow-y: auto; padding: 20px 24px 100px; }
     .drawer-footer {
       padding: 16px 24px;
       border-top: 1px solid var(--border);
@@ -271,10 +441,7 @@
       gap: 10px;
       justify-content: flex-end;
       background: var(--surface-2);
-      position: sticky;
-      bottom: 0;
     }
-
     .form-section { margin-bottom: 24px; }
     .form-section h3 {
       margin: 0 0 14px;
@@ -286,11 +453,7 @@
       padding-bottom: 8px;
       border-bottom: 1px solid var(--border);
     }
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .form-grid .full { grid-column: 1 / -1; }
     label {
       display: flex;
@@ -313,36 +476,63 @@
 <body>
   <div id="loginView" class="login-shell">
     <div class="login-card">
-      <div class="login-brand">
-        <div class="mark">IS</div>
-        <div>
-          <h1>Ismart Skills CRM</h1>
-          <p>IT Training Lead Management</p>
-        </div>
-      </div>
+      <img class="login-logo" src="/images/ismart-skills-logo-trimmed.png" alt="Ismart Skills" onerror="this.style.display='none'" />
+      <h1>Lead CRM</h1>
+      <p class="tagline">Industry-Ready IT Training</p>
+      <p class="desc">Sign in to manage enquiries, course interest, pipeline and revenue for Ismart Skills.</p>
       <label style="margin-bottom:12px;">
         Admin password
         <input id="passwordInput" type="password" placeholder="Enter CRM password" />
       </label>
-      <button id="loginBtn" type="button" style="width:100%; padding:12px;">Sign In</button>
+      <button id="loginBtn" type="button" style="width:100%; padding:12px; background:var(--brand);">Sign In</button>
       <p id="loginError" class="hidden" style="color:var(--danger); margin-top:14px; font-size:0.9rem;"></p>
+      <div class="login-footer">
+        <a href="/" target="_blank" rel="noopener">← Back to website</a>
+        · Designed by <a href="https://www.onebridgeinfotech.com" target="_blank" rel="noopener">Onebridge Infotech</a>
+      </div>
     </div>
   </div>
 
   <div id="crmView" class="hidden">
+    <header class="app-header">
+      <div class="app-header-inner">
+        <a class="brand-block" href="/" target="_blank" rel="noopener">
+          <img src="/images/ismart-skills-logo-trimmed.png" alt="Ismart Skills" onerror="this.style.display='none'" />
+          <div class="brand-text">
+            <strong>Ismart Skills CRM</strong>
+            <span>Industry-Ready IT Training · Lead Management</span>
+          </div>
+        </a>
+        <div class="header-actions">
+          <button id="addLeadBtn" class="btn-accent" type="button">+ Add Lead</button>
+          <button id="exportCsvBtn" class="btn-ghost-light" type="button">↓ Export CSV</button>
+          <button id="logoutBtn" class="btn-ghost-light" type="button">Sign Out</button>
+        </div>
+      </div>
+    </header>
+
     <div class="wrap">
-      <div class="topbar">
+      <div class="page-intro">
         <div>
-          <h1>Lead CRM</h1>
-          <p class="sub">Track enquiries, courses, pipeline &amp; revenue. All changes save directly to MySQL.</p>
+          <h2>Sales dashboard</h2>
+          <p>Website enquiries and manual leads — saved live to your database.</p>
         </div>
-        <div class="topbar-actions">
-          <button id="addLeadBtn" class="accent" type="button">+ Add Lead</button>
-          <button id="logoutBtn" class="secondary" type="button">Sign Out</button>
-        </div>
+        <div class="last-sync" id="lastSync">—</div>
+      </div>
+
+      <div id="alertStrip" class="hidden"></div>
+
+      <div class="quick-filters" id="quickFilters">
+        <button type="button" class="chip active" data-filter="">All leads</button>
+        <button type="button" class="chip" data-filter="status:new">New</button>
+        <button type="button" class="chip" data-filter="followUp:today">Due today</button>
+        <button type="button" class="chip" data-filter="followUp:overdue">Overdue</button>
+        <button type="button" class="chip" data-filter="priority:high">High priority</button>
+        <button type="button" class="chip" data-filter="status:enrolled">Enrolled</button>
       </div>
 
       <div class="stats-grid" id="stats"></div>
+      <div class="course-insights hidden" id="courseInsights" style="margin-bottom:16px;"></div>
 
       <div class="panel">
         <div class="toolbar">
@@ -374,8 +564,7 @@
           <select id="courseFilter">
             <option value="">All courses</option>
           </select>
-          <button id="exportCsvBtn" class="secondary" type="button">Export CSV</button>
-          <button id="refreshBtn" type="button">Refresh</button>
+          <button id="refreshBtn" class="secondary" type="button">Refresh</button>
         </div>
         <p id="crmError" class="error-banner hidden"></p>
         <div class="table-wrap">
@@ -389,15 +578,21 @@
                 <th>Status</th>
                 <th>Deal value</th>
                 <th>Follow-up</th>
-                <th></th>
               </tr>
             </thead>
             <tbody id="leadsBody"></tbody>
           </table>
         </div>
       </div>
+
+      <footer class="app-footer">
+        Ismart Skills Ltd · <a href="mailto:info@ismartskills.uk">info@ismartskills.uk</a>
+        · Designed by <a href="https://www.onebridgeinfotech.com" target="_blank" rel="noopener">Onebridge Infotech</a>
+      </footer>
     </div>
   </div>
+
+  <div id="toast" class="toast hidden"></div>
 
   <div id="drawerOverlay" class="overlay hidden">
     <div class="drawer" role="dialog" aria-modal="true">
@@ -411,25 +606,14 @@
       <div class="drawer-body">
         <form id="leadForm">
           <input type="hidden" id="f_id" />
-
           <div class="form-section">
             <h3>Contact</h3>
             <div class="form-grid">
-              <label class="full">Full name *
-                <input id="f_name" required />
-              </label>
-              <label>Email *
-                <input id="f_email" type="email" required />
-              </label>
-              <label>Phone
-                <input id="f_phone" type="tel" />
-              </label>
-              <label>Company
-                <input id="f_company" />
-              </label>
-              <label>Job title
-                <input id="f_job_title" />
-              </label>
+              <label class="full">Full name *<input id="f_name" required /></label>
+              <label>Email *<input id="f_email" type="email" required /></label>
+              <label>Phone<input id="f_phone" type="tel" /></label>
+              <label>Company<input id="f_company" /></label>
+              <label>Job title<input id="f_job_title" /></label>
               <label>Preferred contact
                 <select id="f_preferred_contact">
                   <option value="">—</option>
@@ -440,27 +624,17 @@
               </label>
             </div>
           </div>
-
           <div class="form-section">
             <h3>Course interest</h3>
             <div class="form-grid">
               <label class="full">Course
-                <select id="f_course_slug">
-                  <option value="">— Select course —</option>
-                </select>
+                <select id="f_course_slug"><option value="">— Select course —</option></select>
               </label>
-              <label>Enquiry type
-                <input id="f_enquiry_type" placeholder="e.g. Corporate batch, Individual" />
-              </label>
-              <label>Programme / batch
-                <input id="f_programme" />
-              </label>
-              <label class="full">Message
-                <textarea id="f_message"></textarea>
-              </label>
+              <label>Enquiry type<input id="f_enquiry_type" placeholder="Corporate batch, Individual..." /></label>
+              <label>Programme / batch<input id="f_programme" /></label>
+              <label class="full">Message<textarea id="f_message"></textarea></label>
             </div>
           </div>
-
           <div class="form-section">
             <h3>Pipeline</h3>
             <div class="form-grid">
@@ -497,24 +671,15 @@
                   <option value="high">High</option>
                 </select>
               </label>
-              <label>Assigned to
-                <input id="f_assigned_to" placeholder="Sales advisor name" />
-              </label>
-              <label>Follow-up date
-                <input id="f_follow_up_date" type="date" />
-              </label>
-              <label>Lost reason
-                <input id="f_lost_reason" placeholder="If closed lost" />
-              </label>
+              <label>Assigned to<input id="f_assigned_to" placeholder="Sales advisor" /></label>
+              <label>Follow-up date<input id="f_follow_up_date" type="date" /></label>
+              <label>Lost reason<input id="f_lost_reason" placeholder="If closed lost" /></label>
             </div>
           </div>
-
           <div class="form-section">
             <h3>Revenue &amp; payment</h3>
             <div class="form-grid">
-              <label>Deal value (£)
-                <input id="f_deal_value" type="number" min="0" step="0.01" placeholder="0.00" />
-              </label>
+              <label>Deal value (£)<input id="f_deal_value" type="number" min="0" step="0.01" /></label>
               <label>Payment status
                 <select id="f_payment_status">
                   <option value="none">None</option>
@@ -534,17 +699,12 @@
                   <option value="instalment">Instalment plan</option>
                 </select>
               </label>
-              <label>Enrollment date
-                <input id="f_enrollment_date" type="date" />
-              </label>
+              <label>Enrollment date<input id="f_enrollment_date" type="date" /></label>
             </div>
           </div>
-
           <div class="form-section">
             <h3>Internal notes</h3>
-            <label class="full">
-              <textarea id="f_notes" placeholder="Call notes, next steps, objections..."></textarea>
-            </label>
+            <label class="full"><textarea id="f_notes" placeholder="Call notes, next steps..."></textarea></label>
           </div>
         </form>
       </div>
@@ -557,7 +717,9 @@
 
   <script>
     const TOKEN_KEY = "ismart_crm_token";
+    const WHATSAPP = "447388669345";
     let courses = [];
+    let activeQuickFilter = "";
 
     const $ = (id) => document.getElementById(id);
 
@@ -575,16 +737,23 @@
       $("crmView").classList.remove("hidden");
     }
 
+    function toast(msg) {
+      const el = $("toast");
+      el.textContent = msg;
+      el.classList.remove("hidden");
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => el.classList.add("hidden"), 3200);
+    }
+
     function formatDate(value) {
       if (!value) return "—";
       return new Date(value).toLocaleString("en-GB", {
-        day: "2-digit", month: "short", year: "numeric",
-        hour: "2-digit", minute: "2-digit",
+        day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit",
       });
     }
     function formatDateShort(value) {
       if (!value) return "—";
-      return new Date(value + "T00:00:00").toLocaleDateString("en-GB", {
+      return new Date(String(value).slice(0, 10) + "T00:00:00").toLocaleDateString("en-GB", {
         day: "2-digit", month: "short", year: "numeric",
       });
     }
@@ -595,9 +764,7 @@
     function escapeHtml(v) {
       return String(v || "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
     }
-    function labelStatus(s) {
-      return String(s || "").replaceAll("_", " ");
-    }
+    function labelStatus(s) { return String(s || "").replaceAll("_", " "); }
     function sourceLabel(s) {
       return ({
         homepage_enquiry: "Homepage", contact: "Contact", newsletter: "Newsletter",
@@ -605,11 +772,18 @@
         referral: "Referral", walk_in: "Walk-in", email: "Email", social: "Social",
       })[s] || s;
     }
-    function isOverdue(dateStr) {
-      if (!dateStr) return false;
-      const d = new Date(dateStr + "T00:00:00");
+    function isOverdue(dateStr, status) {
+      if (!dateStr || ["enrolled","closed_lost","spam"].includes(status)) return false;
+      const d = new Date(String(dateStr).slice(0, 10) + "T00:00:00");
       const today = new Date(); today.setHours(0,0,0,0);
       return d < today;
+    }
+    function whatsAppLink(phone, name) {
+      const digits = String(phone || "").replace(/\D/g, "");
+      if (!digits) return "";
+      const num = digits.startsWith("0") ? "44" + digits.slice(1) : digits;
+      const text = encodeURIComponent(`Hi ${name || "there"}, following up on your enquiry with Ismart Skills.`);
+      return `https://wa.me/${num}?text=${text}`;
     }
 
     function populateCourseSelects(courseList) {
@@ -621,8 +795,7 @@
       $("f_course_slug").innerHTML = `<option value="">— Select course —</option>${opts}`;
     }
 
-    async function loadLeads() {
-      $("crmError").classList.add("hidden");
+    function buildParams() {
       const params = new URLSearchParams();
       const status = $("statusFilter").value;
       const source = $("sourceFilter").value;
@@ -632,8 +805,21 @@
       if (source) params.set("source", source);
       if (course) params.set("course", course);
       if (q) params.set("q", q);
+      if (activeQuickFilter.startsWith("status:")) {
+        params.set("status", activeQuickFilter.split(":")[1]);
+      }
+      if (activeQuickFilter.startsWith("followUp:")) {
+        params.set("followUp", activeQuickFilter.split(":")[1]);
+      }
+      if (activeQuickFilter.startsWith("priority:")) {
+        params.set("priority", activeQuickFilter.split(":")[1]);
+      }
+      return params;
+    }
 
-      const res = await fetch(`/api/admin/leads?${params}`, { headers: authHeaders() });
+    async function loadLeads() {
+      $("crmError").classList.add("hidden");
+      const res = await fetch(`/api/admin/leads?${buildParams()}`, { headers: authHeaders() });
       if (res.status === 401) { sessionStorage.removeItem(TOKEN_KEY); showLogin(); return; }
 
       const data = await res.json();
@@ -643,31 +829,80 @@
         return;
       }
 
+      $("lastSync").textContent = "Updated " + new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
       if (data.courses) populateCourseSelects(data.courses);
       renderStats(data.stats);
+      renderAlerts(data.stats);
+      renderCourseInsights(data.stats);
       renderLeads(data.leads);
+    }
+
+    function renderAlerts(stats) {
+      const el = $("alertStrip");
+      if (!stats || (!stats.followUpOverdue && !stats.followUpToday)) {
+        el.classList.add("hidden");
+        return;
+      }
+      el.classList.remove("hidden");
+      if (stats.followUpOverdue > 0) {
+        el.className = "alert-strip danger";
+        el.innerHTML = `<span><strong>${stats.followUpOverdue} overdue follow-up${stats.followUpOverdue > 1 ? "s" : ""}</strong> — leads need attention today.</span>
+          <button type="button" class="secondary" id="alertOverdueBtn">View overdue</button>`;
+        $("alertOverdueBtn").onclick = () => setQuickFilter("followUp:overdue");
+      } else {
+        el.className = "alert-strip";
+        el.innerHTML = `<span><strong>${stats.followUpToday} follow-up${stats.followUpToday > 1 ? "s" : ""} due today</strong></span>
+          <button type="button" class="secondary" id="alertTodayBtn">View today</button>`;
+        $("alertTodayBtn").onclick = () => setQuickFilter("followUp:today");
+      }
     }
 
     function renderStats(stats) {
       if (!stats) return;
       $("stats").innerHTML = `
-        <div class="stat-card"><span>Total leads</span><strong>${stats.total}</strong></div>
+        <div class="stat-card brand"><span>Total leads</span><strong>${stats.total}</strong></div>
         <div class="stat-card accent"><span>New</span><strong>${stats.new}</strong></div>
-        <div class="stat-card brand"><span>In pipeline</span><strong>${stats.inPipeline}</strong></div>
+        <div class="stat-card warn"><span>Due / overdue</span><strong>${(stats.followUpToday || 0) + (stats.followUpOverdue || 0)}</strong></div>
+        <div class="stat-card brand"><span>Pipeline</span><strong>${stats.inPipeline}</strong></div>
         <div class="stat-card brand"><span>Pipeline value</span><strong class="money">${formatMoney(stats.pipelineValue)}</strong></div>
         <div class="stat-card success"><span>Enrolled</span><strong>${stats.enrolled}</strong></div>
         <div class="stat-card success"><span>Revenue won</span><strong class="money">${formatMoney(stats.revenueWon)}</strong></div>
       `;
     }
 
+    function renderCourseInsights(stats) {
+      const el = $("courseInsights");
+      if (!stats?.byCourse || stats.total === 0) {
+        el.classList.add("hidden");
+        return;
+      }
+      const entries = Object.entries(stats.byCourse)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5);
+      const max = entries[0][1] || 1;
+      el.classList.remove("hidden");
+      el.innerHTML = `<h3>Top courses</h3>${entries.map(([name, count]) => `
+        <div class="course-bar">
+          <div class="course-bar-label"><span>${escapeHtml(name)}</span><span>${count}</span></div>
+          <div class="course-bar-track"><div class="course-bar-fill" style="width:${Math.round(count / max * 100)}%"></div></div>
+        </div>`).join("")}`;
+    }
+
     function renderLeads(leads) {
       if (!leads.length) {
-        $("leadsBody").innerHTML = `<tr><td colspan="8"><div class="empty-state"><strong>No leads yet</strong>Add a lead manually or wait for website enquiries.</div></td></tr>`;
+        $("leadsBody").innerHTML = `<tr><td colspan="7"><div class="empty-state">
+          <img class="empty-logo" src="/images/ismart-skills-logo-trimmed.png" alt="" onerror="this.style.display='none'" />
+          <strong>No leads yet</strong>
+          <p>Website form submissions and manual entries appear here instantly — no sync needed.</p>
+          <button type="button" class="btn-accent" id="emptyAddBtn" style="padding:10px 20px;border:none;border-radius:10px;cursor:pointer;">+ Add your first lead</button>
+        </div></td></tr>`;
+        $("emptyAddBtn").onclick = () => openDrawer(null);
         return;
       }
 
       $("leadsBody").innerHTML = leads.map((lead) => {
-        const overdue = isOverdue(lead.follow_up_date) && !["enrolled","closed_lost","spam"].includes(lead.status);
+        const overdue = isOverdue(lead.follow_up_date, lead.status);
+        const wa = whatsAppLink(lead.phone, lead.name);
         return `
         <tr data-id="${lead.id}" class="${overdue ? "overdue" : ""}">
           <td>${formatDate(lead.created_at)}</td>
@@ -676,6 +911,7 @@
             <div class="lead-meta">
               <a href="mailto:${escapeHtml(lead.email)}">${escapeHtml(lead.email)}</a>
               ${lead.phone ? " · " + escapeHtml(lead.phone) : ""}
+              ${wa ? ` · <a class="wa-link" href="${wa}" target="_blank" rel="noopener" onclick="event.stopPropagation()">WhatsApp</a>` : ""}
               ${lead.company ? "<br>" + escapeHtml(lead.company) : ""}
             </div>
             ${lead.priority === "high" ? '<span class="badge priority-high" style="margin-top:4px;">High priority</span>' : ""}
@@ -687,26 +923,30 @@
           <td><span class="badge source">${sourceLabel(lead.source)}</span></td>
           <td><span class="badge ${lead.status}">${labelStatus(lead.status)}</span></td>
           <td class="money-cell ${Number(lead.deal_value) ? "" : "zero"}">${formatMoney(lead.deal_value)}</td>
-          <td>${formatDateShort(lead.follow_up_date)}${overdue ? ' <span style="color:#b45309;font-size:11px;">Overdue</span>' : ""}</td>
-          <td>
-            <div class="row-actions">
-              <button type="button" class="secondary edit-btn" data-id="${lead.id}">Edit</button>
-            </div>
-          </td>
+          <td>${formatDateShort(lead.follow_up_date)}${overdue ? ' <span style="color:#b45309;font-size:11px;font-weight:700;">Overdue</span>' : ""}</td>
         </tr>`;
       }).join("");
 
-      document.querySelectorAll(".edit-btn").forEach((btn) => {
-        btn.addEventListener("click", () => openDrawer(Number(btn.dataset.id)));
+      document.querySelectorAll("#leadsBody tr[data-id]").forEach((row) => {
+        row.addEventListener("click", () => openDrawer(Number(row.dataset.id)));
       });
+    }
+
+    function setQuickFilter(filter) {
+      activeQuickFilter = filter;
+      document.querySelectorAll(".chip").forEach((chip) => {
+        chip.classList.toggle("active", chip.dataset.filter === filter);
+      });
+      if (filter.startsWith("status:")) $("statusFilter").value = filter.split(":")[1];
+      loadLeads();
     }
 
     function openDrawer(leadId) {
       const isNew = !leadId;
       $("drawerTitle").textContent = isNew ? "Add Lead" : "Edit Lead";
       $("drawerSub").textContent = isNew
-        ? "Manually add a walk-in, phone, or referral lead."
-        : "Update contact, course, pipeline and revenue details.";
+        ? "Saved directly to database — appears in the table immediately."
+        : "Changes save instantly to MySQL.";
       $("f_id").value = isNew ? "" : leadId;
 
       if (isNew) {
@@ -745,18 +985,16 @@
       $("f_status").value = lead.status || "new";
       $("f_priority").value = lead.priority || "medium";
       $("f_assigned_to").value = lead.assigned_to || "";
-      $("f_follow_up_date").value = lead.follow_up_date ? lead.follow_up_date.slice(0, 10) : "";
+      $("f_follow_up_date").value = lead.follow_up_date ? String(lead.follow_up_date).slice(0, 10) : "";
       $("f_lost_reason").value = lead.lost_reason || "";
       $("f_deal_value").value = lead.deal_value || "";
       $("f_payment_status").value = lead.payment_status || "none";
       $("f_funding_type").value = lead.funding_type || "unknown";
-      $("f_enrollment_date").value = lead.enrollment_date ? lead.enrollment_date.slice(0, 10) : "";
+      $("f_enrollment_date").value = lead.enrollment_date ? String(lead.enrollment_date).slice(0, 10) : "";
       $("f_notes").value = lead.notes || "";
     }
 
-    function closeDrawer() {
-      $("drawerOverlay").classList.add("hidden");
-    }
+    function closeDrawer() { $("drawerOverlay").classList.add("hidden"); }
 
     function collectForm() {
       return {
@@ -788,55 +1026,33 @@
       const id = $("f_id").value;
       const payload = collectForm();
       if (!payload.name || !payload.email) {
-        alert("Name and email are required.");
+        toast("Name and email are required.");
         return;
       }
 
-      const url = id ? `/api/admin/leads/${id}` : "/api/admin/leads";
-      const method = id ? "PATCH" : "POST";
-
-      const res = await fetch(url, {
-        method,
+      const res = await fetch(id ? `/api/admin/leads/${id}` : "/api/admin/leads", {
+        method: id ? "PATCH" : "POST",
         headers: authHeaders(),
         body: JSON.stringify(payload),
       });
 
       const data = await res.json();
       if (!res.ok) {
-        alert(data.error || "Failed to save lead.");
+        toast(data.error || "Failed to save lead.");
         return;
       }
 
       closeDrawer();
+      toast(id ? "Lead updated successfully." : "Lead added to database.");
       await loadLeads();
     }
 
     async function exportCsv() {
-      const params = new URLSearchParams();
-      const status = $("statusFilter").value;
-      const source = $("sourceFilter").value;
-      const course = $("courseFilter").value;
-      const q = $("searchInput").value.trim();
-      if (status) params.set("status", status);
-      if (source) params.set("source", source);
-      if (course) params.set("course", course);
-      if (q) params.set("q", q);
-
-      const res = await fetch(`/api/admin/leads/export?${params}`, {
+      const res = await fetch(`/api/admin/leads/export?${buildParams()}`, {
         headers: { Authorization: `Bearer ${token()}` },
       });
-
-      if (res.status === 401) {
-        sessionStorage.removeItem(TOKEN_KEY);
-        showLogin();
-        return;
-      }
-
-      if (!res.ok) {
-        alert("Unable to export leads. Please try again.");
-        return;
-      }
-
+      if (res.status === 401) { sessionStorage.removeItem(TOKEN_KEY); showLogin(); return; }
+      if (!res.ok) { toast("Export failed."); return; }
       const blob = await res.blob();
       const blobUrl = URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -844,6 +1060,7 @@
       link.download = `ismart-skills-leads-${new Date().toISOString().slice(0, 10)}.csv`;
       link.click();
       URL.revokeObjectURL(blobUrl);
+      toast("CSV downloaded.");
     }
 
     $("loginBtn").addEventListener("click", async () => {
@@ -861,7 +1078,7 @@
     });
 
     $("logoutBtn").addEventListener("click", () => { sessionStorage.removeItem(TOKEN_KEY); showLogin(); });
-    $("refreshBtn").addEventListener("click", loadLeads);
+    $("refreshBtn").addEventListener("click", () => { loadLeads(); toast("Refreshed."); });
     $("exportCsvBtn").addEventListener("click", exportCsv);
     $("addLeadBtn").addEventListener("click", () => openDrawer(null));
     $("closeDrawerBtn").addEventListener("click", closeDrawer);
@@ -869,7 +1086,16 @@
     $("saveLeadBtn").addEventListener("click", saveLead);
     $("drawerOverlay").addEventListener("click", (e) => { if (e.target === $("drawerOverlay")) closeDrawer(); });
 
-    $("statusFilter").addEventListener("change", loadLeads);
+    document.querySelectorAll(".chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        setQuickFilter(chip.dataset.filter);
+        if (!chip.dataset.filter) {
+          $("statusFilter").value = "";
+        }
+      });
+    });
+
+    $("statusFilter").addEventListener("change", () => { activeQuickFilter = ""; document.querySelectorAll(".chip").forEach(c => c.classList.toggle("active", !c.dataset.filter)); loadLeads(); });
     $("sourceFilter").addEventListener("change", loadLeads);
     $("courseFilter").addEventListener("change", loadLeads);
     $("searchInput").addEventListener("input", () => {

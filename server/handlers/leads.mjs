@@ -175,6 +175,9 @@ function computeStats(leads) {
     pipelineValue: 0,
     revenueWon: 0,
     revenueCollected: 0,
+    followUpToday: 0,
+    followUpOverdue: 0,
+    highPriority: 0,
     byCourse: {},
   };
 
@@ -184,6 +187,9 @@ function computeStats(leads) {
     "qualified",
     "proposal_sent",
   ]);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
   for (const lead of leads) {
     const value = Number(lead.deal_value) || 0;
@@ -200,6 +206,13 @@ function computeStats(leads) {
     }
     if (["deposit", "partial", "paid"].includes(lead.payment_status)) {
       stats.revenueCollected += value;
+    }
+    if (lead.priority === "high") stats.highPriority += 1;
+
+    if (lead.follow_up_date && !["enrolled", "closed_lost", "spam"].includes(lead.status)) {
+      const followUp = new Date(String(lead.follow_up_date).slice(0, 10) + "T00:00:00");
+      if (followUp.getTime() === today.getTime()) stats.followUpToday += 1;
+      if (followUp < today) stats.followUpOverdue += 1;
     }
 
     const courseKey = lead.course_name || lead.course_slug || "Unspecified";
@@ -378,6 +391,24 @@ function buildLeadQueryFilters(url) {
     );
     const term = `%${search.slice(0, 100)}%`;
     params.push(term, term, term, term, term, term, term, term);
+  }
+
+  const followUp = url.searchParams.get("followUp");
+  if (followUp === "today") {
+    where.push("follow_up_date = CURDATE()");
+    where.push("status NOT IN ('enrolled', 'closed_lost', 'spam')");
+  } else if (followUp === "overdue") {
+    where.push("follow_up_date < CURDATE()");
+    where.push("status NOT IN ('enrolled', 'closed_lost', 'spam')");
+  } else if (followUp === "due") {
+    where.push("follow_up_date IS NOT NULL AND follow_up_date <= CURDATE()");
+    where.push("status NOT IN ('enrolled', 'closed_lost', 'spam')");
+  }
+
+  const priority = url.searchParams.get("priority");
+  if (priority && ALLOWED_PRIORITY.has(priority)) {
+    where.push("priority = ?");
+    params.push(priority);
   }
 
   const whereSql = where.length ? `WHERE ${where.join(" AND ")}` : "";
