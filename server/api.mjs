@@ -35,10 +35,20 @@ export async function handleApiRequest(req, res, url) {
     }
 
     try {
-      await pingDb();
-      sendJson(res, 200, { ok: true, db: "connected" });
-    } catch {
-      sendJson(res, 503, { ok: false, db: "error" });
+      const result = await pingDb();
+      if (result.ok) {
+        sendJson(res, 200, { ok: true, db: "connected" });
+      } else {
+        sendJson(res, 503, {
+          ok: false,
+          db: "error",
+          code: result.code || null,
+          hint: result.hint,
+        });
+      }
+    } catch (error) {
+      console.error("[db] unexpected health error:", error);
+      sendJson(res, 503, { ok: false, db: "error", hint: "Unexpected database error. Check Runtime logs in Hostinger." });
     }
     return true;
   }
