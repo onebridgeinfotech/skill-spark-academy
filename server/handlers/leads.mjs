@@ -1,4 +1,4 @@
-import { getPool, isDbConfigured } from "./db.mjs";
+import { getPool, isDbConfigured } from "../db.mjs";
 import {
   getClientIp,
   isRateLimited,
@@ -6,7 +6,7 @@ import {
   normalizeText,
   readJsonBody,
   sendJson,
-} from "./utils.mjs";
+} from "../utils.mjs";
 
 const ALLOWED_SOURCES = new Set([
   "homepage_enquiry",

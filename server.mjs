@@ -71,8 +71,8 @@ async function serveStatic(req, res, url) {
   }
 
   if (!filePath) {
-    res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-    res.end("Not Found");
+    res.writeHead(503, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end("Site build not ready. API and /admin may still be available.");
     return;
   }
 
@@ -84,8 +84,7 @@ async function serveStatic(req, res, url) {
 }
 
 if (!existsSync(ROOT)) {
-  console.error(`Build output not found at ${ROOT}. Run "npm run build" first.`);
-  process.exit(1);
+  console.warn(`Build output not found at ${ROOT}. Static pages unavailable until "npm run build" completes.`);
 }
 
 const server = createServer(async (req, res) => {
