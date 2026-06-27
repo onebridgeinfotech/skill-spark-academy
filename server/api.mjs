@@ -8,6 +8,7 @@ import {
   getLead,
   updateLead,
   listCourses,
+  exportLeadsCsv,
 } from "./handlers/leads.mjs";
 import { isAdminAuthorized, sendJson } from "./utils.mjs";
 import { isDbConfigured, pingDb } from "./db.mjs";
@@ -71,6 +72,15 @@ export async function handleApiRequest(req, res, url) {
       return true;
     }
     listCourses(req, res);
+    return true;
+  }
+
+  if (pathname === "/api/admin/leads/export" && req.method === "GET") {
+    if (!isAdminAuthorized(req)) {
+      sendJson(res, 401, { error: "Unauthorized" });
+      return true;
+    }
+    await exportLeadsCsv(req, res, url);
     return true;
   }
 

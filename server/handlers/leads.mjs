@@ -348,17 +348,11 @@ export async function createAdminLead(req, res) {
   }
 }
 
-export async function listLeads(req, res, url) {
-  if (!isDbConfigured()) {
-    sendJson(res, 503, { error: "Database not configured." });
-    return;
-  }
-
+function buildLeadQueryFilters(url) {
   const status = url.searchParams.get("status");
   const source = url.searchParams.get("source");
   const course = url.searchParams.get("course");
   const search = url.searchParams.get("q");
-  const limit = Math.min(Number(url.searchParams.get("limit") || 200), 500);
 
   const where = [];
   const params = [];
@@ -387,6 +381,59 @@ export async function listLeads(req, res, url) {
   }
 
   const whereSql = where.length ? `WHERE ${where.join(" AND ")}` : "";
+  return { whereSql, params };
+}
+
+function escapeCsvField(value) {
+  const text = value === null || value === undefined ? "" : String(value);
+  if (/[",\r\n]/.test(text)) {
+    return `"${text.replace(/"/g, '""')}"`;
+  }
+  return text;
+}
+
+const CSV_HEADERS = [
+  "id",
+  "created_at",
+  "updated_at",
+  "source",
+  "status",
+  "priority",
+  "name",
+  "email",
+  "phone",
+  "company",
+  "job_title",
+  "preferred_contact",
+  "course_name",
+  "course_category",
+  "course_slug",
+  "programme",
+  "enquiry_type",
+  "deal_value",
+  "payment_status",
+  "funding_type",
+  "enrollment_date",
+  "assigned_to",
+  "follow_up_date",
+  "lost_reason",
+  "message",
+  "notes",
+  "page_url",
+];
+
+function leadToCsvRow(lead) {
+  return CSV_HEADERS.map((key) => escapeCsvField(lead[key])).join(",");
+}
+
+export async function listLeads(req, res, url) {
+  if (!isDbConfigured()) {
+    sendJson(res, 503, { error: "Database not configured." });
+    return;
+  }
+
+  const limit = Math.min(Number(url.searchParams.get("limit") || 200), 500);
+  const { whereSql, params } = buildLeadQueryFilters(url);
 
   try {
     const db = getPool();
@@ -666,4 +713,39 @@ export async function updateLead(req, res, leadId) {
 
 export function listCourses(_req, res) {
   sendJson(res, 200, { ok: true, courses: getCourseList() });
+}
+
+export async function exportLeadsCsv(req, res, url) {
+  if (!isDbConfigured()) {
+    sendJson(res, 503, { error: "Database not configured." });
+    return;
+  }
+
+  const { whereSql, params } = buildLeadQueryFilters(url);
+
+  try {
+    const db = getPool();
+    const [rows] = await db.execute(
+      `SELECT ${LEAD_COLUMNS}
+       FROM leads
+       ${whereSql}
+       ORDER BY created_at DESC
+       LIMIT 5000`,
+      params,
+    );
+
+    const lines = [CSV_HEADERS.join(","), ...rows.map(leadToCsvRow)];
+    const csv = `\uFEFF${lines.join("\r\n")}`;
+    const filename = `ismart-skills-leads-${new Date().toISOString().slice(0, 10)}.csv`;
+
+    res.writeHead(200, {
+      "Content-Type": "text/csv; charset=utf-8",
+      "Content-Disposition": `attachment; filename="${filename}"`,
+      "Cache-Control": "no-store",
+    });
+    res.end(csv);
+  } catch (error) {
+    console.error("Failed to export leads:", error);
+    sendJson(res, 500, { error: "Unable to export leads." });
+  }
 }

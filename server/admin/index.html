@@ -334,7 +334,7 @@
       <div class="topbar">
         <div>
           <h1>Lead CRM</h1>
-          <p class="sub">Track enquiries, courses, pipeline &amp; revenue for all IT training programmes.</p>
+          <p class="sub">Track enquiries, courses, pipeline &amp; revenue. All changes save directly to MySQL.</p>
         </div>
         <div class="topbar-actions">
           <button id="addLeadBtn" class="accent" type="button">+ Add Lead</button>
@@ -374,6 +374,7 @@
           <select id="courseFilter">
             <option value="">All courses</option>
           </select>
+          <button id="exportCsvBtn" class="secondary" type="button">Export CSV</button>
           <button id="refreshBtn" type="button">Refresh</button>
         </div>
         <p id="crmError" class="error-banner hidden"></p>
@@ -810,6 +811,41 @@
       await loadLeads();
     }
 
+    async function exportCsv() {
+      const params = new URLSearchParams();
+      const status = $("statusFilter").value;
+      const source = $("sourceFilter").value;
+      const course = $("courseFilter").value;
+      const q = $("searchInput").value.trim();
+      if (status) params.set("status", status);
+      if (source) params.set("source", source);
+      if (course) params.set("course", course);
+      if (q) params.set("q", q);
+
+      const res = await fetch(`/api/admin/leads/export?${params}`, {
+        headers: { Authorization: `Bearer ${token()}` },
+      });
+
+      if (res.status === 401) {
+        sessionStorage.removeItem(TOKEN_KEY);
+        showLogin();
+        return;
+      }
+
+      if (!res.ok) {
+        alert("Unable to export leads. Please try again.");
+        return;
+      }
+
+      const blob = await res.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = `ismart-skills-leads-${new Date().toISOString().slice(0, 10)}.csv`;
+      link.click();
+      URL.revokeObjectURL(blobUrl);
+    }
+
     $("loginBtn").addEventListener("click", async () => {
       $("loginError").classList.add("hidden");
       sessionStorage.setItem(TOKEN_KEY, $("passwordInput").value);
@@ -826,6 +862,7 @@
 
     $("logoutBtn").addEventListener("click", () => { sessionStorage.removeItem(TOKEN_KEY); showLogin(); });
     $("refreshBtn").addEventListener("click", loadLeads);
+    $("exportCsvBtn").addEventListener("click", exportCsv);
     $("addLeadBtn").addEventListener("click", () => openDrawer(null));
     $("closeDrawerBtn").addEventListener("click", closeDrawer);
     $("cancelDrawerBtn").addEventListener("click", closeDrawer);
