@@ -44,7 +44,7 @@ const data: CourseTemplateData = {
   ],
 
   certificationTitle: "Certified ScrumMaster® (CSM) & PSM I",
-  certificationDesc: "This programme prepares you for both the Certified ScrumMaster (CSM) from Scrum Alliance and the Professional Scrum Master I (PSM I) from Scrum.org. You receive an EslandIT institutional certificate recognised by 250+ UK hiring partners, with full mock exam sessions and interview coaching.",
+  certificationDesc: "This programme prepares you for both the Certified ScrumMaster (CSM) from Scrum Alliance and the Professional Scrum Master I (PSM I) from Scrum.org. You receive an Ismart Skills institutional certificate recognised by 250+ UK hiring partners, with full mock exam sessions and interview coaching.",
   certificationStats: [
     { label: "Mock Exams",     value: "2 Full Tests"  },
     { label: "Interview Prep", value: "Included"      },
@@ -100,7 +100,7 @@ const data: CourseTemplateData = {
 export const Route = createFileRoute("/scrum-master")({
   head: () => ({
     meta: [
-      { title: "Scrum Master Certification Training — Live UK | EslandIT Trainings" },
+      { title: "Scrum Master Certification Training — Live UK | Ismart Skills" },
       { name: "description", content: "6-week live Scrum Master certification training programme for UK professionals. CSM and PSM I exam prep, Sprint simulations, SAFe scaling, and servant leadership coaching." },
     ],
   }),

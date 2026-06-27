@@ -249,7 +249,7 @@ export function GenerativeAICourse() {
         <h4 className="text-2xl font-bold font-heading text-[#004890]">Industry-Recognised Certification</h4>
         <p className="text-slate-600 leading-relaxed">
           The Generative AI programme includes mock tests, interview preparation, and certification guidance
-          to validate your technical skills. Upon completion you receive an EslandIT institutional certificate
+          to validate your technical skills. Upon completion you receive an Ismart Skills institutional certificate
           recognised by our 250+ UK hiring partners and global enterprise clients.
         </p>
         <div className="grid sm:grid-cols-3 gap-4 pt-2">
@@ -738,7 +738,7 @@ export function GenerativeAICourse() {
             Ready to Launch Your<br />AI Career?
           </h2>
           <p className="text-white/80 text-base mb-8 max-w-xl mx-auto">
-            Join 127+ professionals who built enterprise AI skills with EslandIT. Enrol now or download the brochure to learn more.
+            Join 127+ professionals who built enterprise AI skills with Ismart Skills. Enrol now or download the brochure to learn more.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link to="/contact">
@@ -810,7 +810,7 @@ export function GenerativeAICourse() {
 export const Route = createFileRoute("/generative-ai-course")({
   head: () => ({
     meta: [
-      { title: "Generative AI Course — Live Training UK | EslandIT Trainings" },
+      { title: "Generative AI Course — Live Training UK | Ismart Skills" },
       { name: "description", content: "10-week live Generative AI training programme for UK professionals. Hands-on labs, enterprise projects, certification prep, and placement support across London, Manchester, Birmingham and online." },
     ],
   }),

@@ -1,6 +1,7 @@
 import { MessageCircle, ArrowUp, ArrowDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { getWhatsAppUrl } from "@/lib/siteConfig";
 
 export function WhatsAppButton() {
   const [scrolled, setScrolled] = useState(false);
@@ -19,8 +20,7 @@ export function WhatsAppButton() {
     }
   };
 
-  const message = encodeURIComponent("Hi, I'm interested in your IT training programs");
-  const url = `https://wa.me/442038190333?text=${message}`;
+  const url = getWhatsAppUrl();
 
   return (
     <div className="fixed bottom-8 right-8 z-50 flex flex-col items-center gap-3">

@@ -46,7 +46,7 @@ const data: CourseTemplateData = {
   ],
 
   certificationTitle: "Google & Meta Certification Preparation",
-  certificationDesc: "This programme prepares you for the Google Ads certification (Search, Display, and Shopping) and Meta Certified Digital Marketing Associate exam. Upon completion you receive an EslandIT certificate recognised by 250+ UK hiring partners, alongside portfolio case studies demonstrating measurable campaign results.",
+  certificationDesc: "This programme prepares you for the Google Ads certification (Search, Display, and Shopping) and Meta Certified Digital Marketing Associate exam. Upon completion you receive an Ismart Skills certificate recognised by 250+ UK hiring partners, alongside portfolio case studies demonstrating measurable campaign results.",
   certificationStats: [
     { label: "Google Ads Prep",  value: "Included"     },
     { label: "Meta Cert Prep",   value: "Included"     },
@@ -102,7 +102,7 @@ const data: CourseTemplateData = {
 export const Route = createFileRoute("/digital-marketing-ai-course")({
   head: () => ({
     meta: [
-      { title: "Digital Marketing with AI — Live Training UK | EslandIT Trainings" },
+      { title: "Digital Marketing with AI — Live Training UK | Ismart Skills" },
       { name: "description", content: "8-week live Digital Marketing with AI training for UK professionals. SEO, Google Ads, Meta, email automation, ChatGPT, Jasper — Google & Meta certification prep included." },
     ],
   }),

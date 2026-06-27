@@ -50,7 +50,7 @@ const data: CourseTemplateData = {
   ],
 
   certificationTitle: "DP-203 Azure Data Engineer Associate",
-  certificationDesc: "This programme prepares you for the Microsoft Certified: Azure Data Engineer Associate (DP-203) exam. You receive an EslandIT institutional certificate recognised by 250+ UK hiring partners, with dedicated mock exam sessions covering all DP-203 domains and technical interview coaching.",
+  certificationDesc: "This programme prepares you for the Microsoft Certified: Azure Data Engineer Associate (DP-203) exam. You receive an Ismart Skills institutional certificate recognised by 250+ UK hiring partners, with dedicated mock exam sessions covering all DP-203 domains and technical interview coaching.",
   certificationStats: [
     { label: "Mock Exams",     value: "Included"     },
     { label: "Interview Prep", value: "Included"     },
@@ -106,7 +106,7 @@ const data: CourseTemplateData = {
 export const Route = createFileRoute("/azure-data-engineer")({
   head: () => ({
     meta: [
-      { title: "Azure Data Engineer Training — Live UK Programme | EslandIT Trainings" },
+      { title: "Azure Data Engineer Training — Live UK Programme | Ismart Skills" },
       { name: "description", content: "12-week live Azure Data Engineer training for UK professionals. Data Factory, Synapse, Databricks, Delta Lake, real-time streaming — with DP-203 certification prep." },
     ],
   }),

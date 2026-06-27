@@ -3,6 +3,7 @@ import appCss from "../styles.css?url";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { siteConfig } from "@/lib/siteConfig";
 
 function NotFoundComponent() {
   return (
@@ -26,14 +27,15 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "EslandIT Trainings — Industry-Ready IT Training" },
+      { title: `${siteConfig.name} — ${siteConfig.tagline}` },
       { name: "description", content: "Upgrade your skills with expert-led IT training. AWS, DevOps, Full Stack, Data Science & more. Trusted by top companies." },
-      { property: "og:title", content: "EslandIT Trainings — Industry-Ready IT Training" },
+      { property: "og:title", content: `${siteConfig.name} — ${siteConfig.tagline}` },
       { property: "og:description", content: "Upgrade your skills with expert-led IT training programs." },
       { property: "og:type", content: "website" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "preload", as: "image", href: "/images/ismart-skills-logo-trimmed.png", fetchPriority: "high" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" },

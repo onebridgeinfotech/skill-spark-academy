@@ -683,7 +683,7 @@ export function CourseTemplatePage({ data }: { data: CourseTemplateData }) {
             Ready to Advance<br />Your Career?
           </h2>
           <p className="text-white/80 text-base mb-8 max-w-xl mx-auto">
-            Join 100+ professionals who built industry skills with EslandIT. Enrol now or download the brochure to learn more.
+            Join 100+ professionals who built industry skills with Ismart Skills. Enrol now or download the brochure to learn more.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link to="/contact">

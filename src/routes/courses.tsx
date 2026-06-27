@@ -8,9 +8,9 @@ import { Search, SlidersHorizontal } from "lucide-react";
 export const Route = createFileRoute("/courses")({
   head: () => ({
     meta: [
-      { title: "Courses — EslandIT Trainings" },
+      { title: "Courses — Ismart Skills" },
       { name: "description", content: "Explore our comprehensive IT training courses in AWS, DevOps, Data Science, Full Stack Development, and more." },
-      { property: "og:title", content: "IT Training Courses — EslandIT Trainings" },
+      { property: "og:title", content: "IT Training Courses — Ismart Skills" },
       { property: "og:description", content: "Browse expert-led courses and start your tech career today." },
     ],
   }),

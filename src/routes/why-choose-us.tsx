@@ -6,9 +6,9 @@ import { CheckCircle2, Users, Award, Briefcase, BookOpen, Clock, Headphones, X }
 export const Route = createFileRoute("/why-choose-us")({
   head: () => ({
     meta: [
-      { title: "Why Choose Us — EslandIT Trainings" },
-      { name: "description", content: "Discover what makes EslandIT Trainings the preferred IT training platform for professionals worldwide." },
-      { property: "og:title", content: "Why Choose EslandIT Trainings" },
+      { title: "Why Choose Us — Ismart Skills" },
+      { name: "description", content: "Discover what makes Ismart Skills the preferred IT training platform for professionals worldwide." },
+      { property: "og:title", content: "Why Choose Ismart Skills" },
       { property: "og:description", content: "Industry experts, live projects, certifications, and placement support." },
     ],
   }),
@@ -46,9 +46,9 @@ function WhyChooseUsPage() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-5"
               style={{ background: "rgba(255,158,13,0.15)", color: "#FF9E0D", border: "1px solid rgba(255,158,13,0.25)" }}>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF9E0D]" /> The EslandIT Difference
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF9E0D]" /> The Ismart Skills Difference
             </span>
-            <h1 className="font-heading text-4xl md:text-5xl font-extrabold text-white mb-4">Why Choose EslandIT Trainings</h1>
+            <h1 className="font-heading text-4xl md:text-5xl font-extrabold text-white mb-4">Why Choose Ismart Skills</h1>
             <p className="text-white/60 text-lg">We don't just teach tech — we build careers.</p>
           </motion.div>
         </div>
@@ -95,7 +95,7 @@ function WhyChooseUsPage() {
           <div className="text-center mb-14">
             <div className="w-10 h-0.5 bg-[#FF9E0D] mx-auto mb-4" />
             <span className="text-xs font-semibold text-[#FF9E0D] uppercase tracking-widest">Comparison</span>
-            <h2 className="text-3xl md:text-4xl font-bold font-heading text-white mt-3">EslandIT vs Others</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-heading text-white mt-3">Ismart Skills vs Others</h2>
             <p className="text-white/50 mt-3 max-w-xl mx-auto text-sm">See how we stack up against typical online learning platforms.</p>
           </div>
 
@@ -109,7 +109,7 @@ function WhyChooseUsPage() {
             <div className="grid grid-cols-3 px-6 py-4 text-sm font-bold"
               style={{ background: "rgba(255,158,13,0.15)" }}>
               <span className="text-white">Feature</span>
-              <span className="text-center text-[#FF9E0D]">EslandIT</span>
+              <span className="text-center text-[#FF9E0D]">Ismart Skills</span>
               <span className="text-center text-white/50">Others</span>
             </div>
             {comparison.map((row, i) => (

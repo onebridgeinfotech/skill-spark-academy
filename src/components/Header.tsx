@@ -1,16 +1,28 @@
 import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Zap, ChevronDown, ArrowRight, Search, Play, Users } from "lucide-react";
+import { BrandLogo } from "@/components/BrandLogo";
+import { siteConfig } from "@/lib/siteConfig";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { courses, getCourseLink } from "@/lib/courses";
 
-const navLinks = [
+const mobileNavLinks = [
   { to: "/" as const, label: "Home" },
-  { to: "/why-choose-us" as const, label: "Why Choose Us" },
   { to: "/about" as const, label: "About Us" },
+  { to: "/why-choose-us" as const, label: "Why Choose Us" },
+  { to: "/courses" as const, label: "Courses" },
+  { to: "/services" as const, label: "Services" },
   { to: "/contact" as const, label: "Contact" },
 ];
+
+const navLinkClass =
+  "px-2.5 xl:px-3.5 py-2 text-sm font-medium text-slate-600 hover:text-[#004890] rounded-md hover:bg-[#004890]/5 transition-all whitespace-nowrap shrink-0";
+
+const navLinkActiveClass = "text-[#004890] bg-[#004890]/5 font-semibold whitespace-nowrap shrink-0";
+
+const navButtonClass =
+  "px-2.5 xl:px-3.5 py-2 text-sm font-medium text-slate-600 hover:text-[#004890] rounded-md hover:bg-[#004890]/5 transition-all flex items-center gap-1 whitespace-nowrap shrink-0";
 
 const serviceLinks = [
   { to: "/services" as const, label: "IT Trainings", icon: Zap, desc: "Hands-on technical programs" },
@@ -38,44 +50,59 @@ export function Header() {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-      scrolled ? "glass-header py-3" : "bg-transparent py-5"
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="flex items-center justify-between h-14">
+    <header
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+        scrolled
+          ? "glass-header shadow-sm"
+          : "bg-white/95 backdrop-blur-md md:bg-white/80 md:backdrop-blur-sm"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-3 sm:px-5 md:px-6 lg:px-8">
+        <div className="flex lg:grid lg:grid-cols-[1fr_auto_1fr] items-center min-h-[56px] md:min-h-[68px] py-2.5 md:py-3">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group shrink-0">
-            <div className="w-10 h-10 rounded-lg bg-[#004890] flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-              <Zap className="w-5 h-5 text-[#FF9E0D] fill-[#FF9E0D]" />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-heading font-800 text-xl font-bold tracking-tight text-[#004890]">
-                EslandIT<span className="text-[#FF9E0D]">Trainings</span>
-              </span>
-              <span className="text-[10px] font-mono-tech font-medium text-slate-400 tracking-widest uppercase">London, UK</span>
-            </div>
+          <Link
+            to="/"
+            aria-label={`${siteConfig.name} — Home`}
+            className="inline-flex shrink-0 items-center rounded-md transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#004890]/40 focus-visible:ring-offset-2 lg:justify-self-start"
+          >
+            <BrandLogo variant="header" />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {/* Home */}
+          {/* Desktop Nav — centered in header */}
+          <nav className="hidden lg:flex lg:justify-self-center items-center flex-nowrap gap-0.5 xl:gap-1">
             <Link
               to="/"
-              className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#004890] rounded-md hover:bg-[#004890]/5 transition-all"
-              activeProps={{ className: "text-[#004890] bg-[#004890]/5 font-semibold" }}
+              className={navLinkClass}
+              activeProps={{ className: navLinkActiveClass }}
             >
               Home
             </Link>
 
+            <Link
+              to="/about"
+              className={navLinkClass}
+              activeProps={{ className: navLinkActiveClass }}
+            >
+              About Us
+            </Link>
+
+            <Link
+              to="/why-choose-us"
+              className={navLinkClass}
+              activeProps={{ className: navLinkActiveClass }}
+            >
+              Why Choose Us
+            </Link>
+
             {/* Courses Dropdown */}
             <div
-              className="relative"
+              className="relative shrink-0"
               onMouseEnter={() => setCoursesOpen(true)}
               onMouseLeave={() => setCoursesOpen(false)}
             >
-              <button className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#004890] rounded-md hover:bg-[#004890]/5 transition-all flex items-center gap-1.5">
-                Courses <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${coursesOpen ? "rotate-180 text-[#004890]" : ""}`} />
+              <button className={navButtonClass}>
+                Courses <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${coursesOpen ? "rotate-180 text-[#004890]" : ""}`} />
               </button>
 
               <AnimatePresence>
@@ -130,12 +157,12 @@ export function Header() {
 
             {/* Services Dropdown */}
             <div
-              className="relative"
+              className="relative shrink-0"
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
             >
-              <button className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#004890] rounded-md hover:bg-[#004890]/5 transition-all flex items-center gap-1.5">
-                Services <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${servicesOpen ? "rotate-180 text-[#004890]" : ""}`} />
+              <button className={navButtonClass}>
+                Services <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${servicesOpen ? "rotate-180 text-[#004890]" : ""}`} />
               </button>
               <AnimatePresence>
                 {servicesOpen && (
@@ -166,21 +193,17 @@ export function Header() {
               </AnimatePresence>
             </div>
 
-            {/* Why Choose Us, About Us, Contact */}
-            {navLinks.filter(l => l.to !== "/").map((link) => (
-              <Link
-                key={link.label}
-                to={link.to}
-                className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#004890] rounded-md hover:bg-[#004890]/5 transition-all"
-                activeProps={{ className: "text-[#004890] bg-[#004890]/5 font-semibold" }}
-              >
-                {link.label}
-              </Link>
-            ))}
+            <Link
+              to="/contact"
+              className={navLinkClass}
+              activeProps={{ className: navLinkActiveClass }}
+            >
+              Contact
+            </Link>
           </nav>
 
           {/* CTA */}
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden lg:flex lg:justify-self-end items-center gap-2">
             {/* Search toggle */}
             <div className="relative">
               <button
@@ -252,7 +275,7 @@ export function Header() {
           </div>
 
           {/* Mobile search + hamburger */}
-          <div className="lg:hidden flex items-center gap-1">
+          <div className="lg:hidden ml-auto flex items-center gap-1">
             {/* Search icon — mobile/tablet */}
             <div className="relative">
               <button
@@ -336,7 +359,7 @@ export function Header() {
             className="lg:hidden bg-white border-t border-slate-100 overflow-hidden"
           >
             <div className="max-w-7xl mx-auto px-4 py-6 space-y-1">
-              {navLinks.map((link) => (
+              {mobileNavLinks.map((link) => (
                 <Link
                   key={link.label}
                   to={link.to}
@@ -346,12 +369,6 @@ export function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Link to="/courses" onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-base font-medium text-slate-700 hover:text-[#004890] hover:bg-[#004890]/5 rounded-lg transition-colors">
-                Courses
-              </Link>
-              <Link to="/services" onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-base font-medium text-slate-700 hover:text-[#004890] hover:bg-[#004890]/5 rounded-lg transition-colors">
-                Services
-              </Link>
               <div className="pt-4 border-t border-slate-100">
                 <Link to="/contact" onClick={() => setMobileOpen(false)}>
                   <Button className="w-full bg-[#004890] hover:bg-[#003870] text-white font-semibold py-3 rounded-lg">

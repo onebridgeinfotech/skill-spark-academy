@@ -48,7 +48,7 @@ const data: CourseTemplateData = {
   ],
 
   certificationTitle: "Salesforce Marketing Cloud Email Specialist",
-  certificationDesc: "This programme prepares you for the Salesforce Marketing Cloud Email Specialist and Marketing Cloud Administrator certifications. You receive an EslandIT institutional certificate recognised by 250+ UK hiring partners, with dedicated mock exam sessions, practice questions, and technical interview coaching.",
+  certificationDesc: "This programme prepares you for the Salesforce Marketing Cloud Email Specialist and Marketing Cloud Administrator certifications. You receive an Ismart Skills institutional certificate recognised by 250+ UK hiring partners, with dedicated mock exam sessions, practice questions, and technical interview coaching.",
   certificationStats: [
     { label: "Mock Exams",     value: "Included"     },
     { label: "Interview Prep", value: "Included"     },
@@ -104,7 +104,7 @@ const data: CourseTemplateData = {
 export const Route = createFileRoute("/salesforce-marketing-cloud")({
   head: () => ({
     meta: [
-      { title: "Salesforce Marketing Cloud Training — Live UK | EslandIT Trainings" },
+      { title: "Salesforce Marketing Cloud Training — Live UK | Ismart Skills" },
       { name: "description", content: "10-week live Salesforce Marketing Cloud training for UK professionals. Email Studio, Journey Builder, AMPscript, Automation Studio — with Email Specialist certification prep." },
     ],
   }),

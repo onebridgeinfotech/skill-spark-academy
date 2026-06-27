@@ -5,8 +5,8 @@ import { Shield, Lock, CreditCard, AlertTriangle } from "lucide-react";
 export const Route = createFileRoute("/security")({
   head: () => ({
     meta: [
-      { title: "Security Policy — EslandIT Trainings" },
-      { name: "description", content: "Security practices and protocols at EslandIT Trainings for protecting learner and institutional data." },
+      { title: "Security Policy — Ismart Skills" },
+      { name: "description", content: "Security practices and protocols at Ismart Skills for protecting learner and institutional data." },
     ],
   }),
   component: SecurityPage,
@@ -26,12 +26,12 @@ const sections = [
   {
     icon: CreditCard,
     title: "Payment Security",
-    body: "Financial transactions are processed through PCI-compliant payment providers. EslandIT Trainings does not store full card details on its servers.",
+    body: "Financial transactions are processed through PCI-compliant payment providers. Ismart Skills does not store full card details on its servers.",
   },
   {
     icon: AlertTriangle,
     title: "Reporting Concerns",
-    body: "If you identify a security vulnerability or suspect unauthorised access, report it immediately to info@eslanditsolutions.com.",
+    body: "If you identify a security vulnerability or suspect unauthorised access, report it immediately to info@ismartskills.uk.",
   },
 ];
 

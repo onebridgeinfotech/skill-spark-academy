@@ -48,7 +48,7 @@ const data: CourseTemplateData = {
   ],
 
   certificationTitle: "AZ-400 DevOps Engineer Expert",
-  certificationDesc: "This programme prepares you for the Microsoft Certified: DevOps Engineer Expert (AZ-400) exam. Upon completion you receive an EslandIT institutional certificate recognised by 250+ UK hiring partners, alongside full mock exam preparation and technical interview coaching.",
+  certificationDesc: "This programme prepares you for the Microsoft Certified: DevOps Engineer Expert (AZ-400) exam. Upon completion you receive an Ismart Skills institutional certificate recognised by 250+ UK hiring partners, alongside full mock exam preparation and technical interview coaching.",
   certificationStats: [
     { label: "Mock Exams",     value: "Included"     },
     { label: "Interview Prep", value: "Included"     },
@@ -104,7 +104,7 @@ const data: CourseTemplateData = {
 export const Route = createFileRoute("/azure-devops-gen-ai")({
   head: () => ({
     meta: [
-      { title: "Azure DevOps with Generative AI — Live Training UK | EslandIT Trainings" },
+      { title: "Azure DevOps with Generative AI — Live Training UK | Ismart Skills" },
       { name: "description", content: "10-week live Azure DevOps with Generative AI training programme for UK professionals. Azure Pipelines, AKS, Bicep, Azure OpenAI — hands-on labs and AZ-400 exam prep." },
     ],
   }),

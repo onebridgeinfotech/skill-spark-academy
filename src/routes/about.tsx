@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us — EslandIT Trainings" },
-      { name: "description", content: "Founded in London in 2017, EslandIT Trainings bridges the gap between academic theory and enterprise employment through industry-standard IT training." },
-      { property: "og:title", content: "About EslandIT Trainings" },
+      { title: "About Us — Ismart Skills" },
+      { name: "description", content: "Founded in London in 2017, Ismart Skills bridges the gap between academic theory and enterprise employment through industry-standard IT training." },
+      { property: "og:title", content: "About Ismart Skills" },
       { property: "og:description", content: "Our story of professional evolution and technical excellence." },
     ],
   }),
@@ -43,7 +43,7 @@ function AboutPage() {
               <Shield className="w-3.5 h-3.5" /> Governance & Vision
             </span>
             <h1 className="text-5xl md:text-7xl font-extrabold font-heading text-white leading-tight mb-6">
-              About<br /><span className="text-[#FF9E0D]">EslandIT.</span>
+              About<br /><span className="text-[#FF9E0D]">Ismart Skills.</span>
             </h1>
             <p className="text-xl text-white/60 max-w-2xl mx-auto leading-relaxed">
               "We don't just teach technology — we facilitate professional evolution. Our mission is to engineer the skills that command global salaries."
@@ -84,7 +84,7 @@ function AboutPage() {
               Closing the Gap Between Education & Enterprise
             </h2>
             <div className="space-y-5 text-slate-600 text-base leading-relaxed">
-              <p>Founded in London in 2017, EslandIT Trainings was built around a single premise: the IT skills gap is not a talent problem — it's a training problem.</p>
+              <p>Founded in London in 2017, Ismart Skills was built around a single premise: the IT skills gap is not a talent problem — it's a training problem.</p>
               <p>Academic courses produce graduates who know theory. Employers need professionals who can ship production code, manage live infrastructure, and work in agile enterprise teams from day one.</p>
               <p>Every programme we design is mapped to real job descriptions, delivered by instructors who hold active vendor certifications and work on production systems.</p>
             </div>
@@ -141,7 +141,7 @@ function AboutPage() {
             <div className="w-10 h-0.5 bg-[#FF9E0D] mx-auto mb-4" />
             <span className="text-xs font-semibold text-[#FF9E0D] uppercase tracking-widest">Governing Principles</span>
             <h2 className="text-3xl md:text-5xl font-extrabold font-heading text-white mt-3">
-              The EslandIT <span className="text-[#FF9E0D]">Code.</span>
+              The Ismart Skills <span className="text-[#FF9E0D]">Code.</span>
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">

@@ -5,8 +5,8 @@ import { Shield } from "lucide-react";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — EslandIT Trainings" },
-      { name: "description", content: "Privacy policy for EslandIT Trainings. How we collect, use, and protect your personal data." },
+      { title: "Privacy Policy — Ismart Skills" },
+      { name: "description", content: "Privacy policy for Ismart Skills. How we collect, use, and protect your personal data." },
     ],
   }),
   component: PrivacyPage,
@@ -27,7 +27,7 @@ const sections = [
   },
   {
     title: "Your Rights",
-    body: "You may request access, correction, or deletion of your personal data at any time by contacting info@eslanditsolutions.com.",
+    body: "You may request access, correction, or deletion of your personal data at any time by contacting info@ismartskills.uk.",
   },
 ];
 
@@ -43,7 +43,7 @@ function PrivacyPage() {
             <Shield className="w-3.5 h-3.5" /> Data Governance
           </span>
           <h1 className="text-4xl md:text-6xl font-extrabold font-heading text-white mb-4">Privacy Policy</h1>
-          <p className="text-white/60 text-lg">How EslandIT Trainings protects and processes your personal information.</p>
+          <p className="text-white/60 text-lg">How Ismart Skills protects and processes your personal information.</p>
         </div>
       </section>
 

@@ -27,10 +27,10 @@ export const Route = createFileRoute("/courses_/$slug")({
     return {
       meta: course
         ? [
-            { title: `${course.name} — EslandIT Trainings` },
+            { title: `${course.name} — Ismart Skills` },
             { name: "description", content: course.description },
           ]
-        : [{ title: "Course — EslandIT Trainings" }],
+        : [{ title: "Course — Ismart Skills" }],
     };
   },
   component: CourseSlugPage,

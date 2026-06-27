@@ -3,6 +3,7 @@ import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CourseCard } from "@/components/CourseCard";
 import { courses } from "@/lib/courses";
+import { siteConfig, getWhatsAppUrl } from "@/lib/siteConfig";
 import {
   ArrowRight, Users, Award, Clock, CheckCircle,
   Globe, Target, Shield, Rocket, GraduationCap,
@@ -165,7 +166,7 @@ const testimonials = [
     role: "Associate Director",
     company: "Google",
     outcome: "Promoted within 6 months",
-    text: "The project-led approach mirrors exactly what industry demands. My team now actively recruits EslandIT graduates because they arrive production-ready.",
+    text: "The project-led approach mirrors exactly what industry demands. My team now actively recruits Ismart Skills graduates because they arrive production-ready.",
     avatar: "AM",
     rating: 5,
   },
@@ -192,7 +193,7 @@ const testimonials = [
     role: "Full-Stack Tech Lead",
     company: "Microsoft",
     outcome: "From junior to lead in 14 months",
-    text: "EslandIT graduates don't just write code — they think architecturally. The mentorship from active industry professionals is what sets this apart from everything else.",
+    text: "Ismart Skills graduates don't just write code — they think architecturally. The mentorship from active industry professionals is what sets this apart from everything else.",
     avatar: "PD",
     rating: 5,
   },
@@ -653,20 +654,20 @@ function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          WHY ESLANDIT — 6 Differentiators
+          WHY Ismart Skills — 6 Differentiators
       ══════════════════════════════════════════════════════ */}
       <section className="py-24" style={{ background: "linear-gradient(180deg, #f8faff 0%, #ffffff 60%, #f8faff 100%)" }}>
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="grid lg:grid-cols-2 gap-14 items-center mb-16">
             <div>
               <div className="accent-divider mb-4" />
-              <span className="text-xs font-semibold text-[#FF9E0D] uppercase tracking-widest">Why EslandIT</span>
+              <span className="text-xs font-semibold text-[#FF9E0D] uppercase tracking-widest">Why Ismart Skills</span>
               <h2 className="text-4xl md:text-5xl font-bold font-heading text-[#004890] mt-3 leading-tight">
                 Not a Bootcamp.<br />A Career Investment.
               </h2>
             </div>
             <p className="text-slate-500 text-lg leading-relaxed">
-              The IT training market is flooded with low-quality, pre-recorded content that leaves learners unprepared. EslandIT delivers the opposite — live instruction from practitioners, certification-aligned content, and a placement desk that stays with you long after graduation.
+              The IT training market is flooded with low-quality, pre-recorded content that leaves learners unprepared. Ismart Skills delivers the opposite — live instruction from practitioners, certification-aligned content, and a placement desk that stays with you long after graduation.
             </p>
           </div>
 
@@ -964,7 +965,7 @@ function HomePage() {
                 </h2>
               </div>
               <p className="text-slate-600 text-base leading-relaxed">
-                Founded in London in 2017, EslandIT Trainings was built around a single premise: the IT skills gap is not a talent problem — it's a training problem. Academic courses produce graduates who know theory. Employers need professionals who can ship production code, manage live infrastructure, and work in agile enterprise teams from day one.
+                Founded in London in 2017, Ismart Skills was built around a single premise: the IT skills gap is not a talent problem — it's a training problem. Academic courses produce graduates who know theory. Employers need professionals who can ship production code, manage live infrastructure, and work in agile enterprise teams from day one.
               </p>
               <p className="text-slate-600 text-base leading-relaxed">
                 Every programme we design is mapped to real job descriptions, delivered by instructors who hold active vendor certifications and work on production systems — not just career educators.
@@ -1090,12 +1091,13 @@ function HomePage() {
               {/* Contact methods */}
               <div className="space-y-5">
                 {[
-                  { icon: Mail,  label: "Email",              value: "info@eslanditsolutions.com",                            href: "mailto:info@eslanditsolutions.com", color: "bg-[#004890]" },
-                  { icon: Phone, label: "Phone / WhatsApp",   value: "0203 8190 333",                                         href: "tel:02038190333",                  color: "bg-green-600" },
-                  { icon: Globe, label: "London Training HQ", value: "Suite-G, Weller House, 58–60 Longbridge Rd, Barking, IG11 8RT", href: "#",                     color: "bg-[#FF9E0D]" },
-                  { icon: Clock, label: "Office Hours",       value: "Monday – Saturday, 9:00 AM – 7:00 PM GMT",              href: "#",                               color: "bg-slate-600" },
+                  { icon: Mail,  label: "Email",            value: siteConfig.email, href: `mailto:${siteConfig.email}`, color: "bg-[#004890]" },
+                  { icon: Phone, label: "Phone",            value: siteConfig.phone.display, href: `tel:${siteConfig.phone.tel}`, color: "bg-green-600" },
+                  { icon: Phone, label: "WhatsApp",         value: siteConfig.whatsapp.display, href: getWhatsAppUrl(), color: "bg-green-600" },
+                  { icon: Globe, label: "London Training HQ", value: siteConfig.address.full, href: siteConfig.address.mapsUrl, color: "bg-[#FF9E0D]" },
+                  { icon: Clock, label: "Office Hours",     value: "Monday – Saturday, 9:00 AM – 7:00 PM GMT", href: "#", color: "bg-slate-600" },
                 ].map((item) => (
-                  <a key={item.label} href={item.href} className="flex items-start gap-4 group">
+                  <a key={item.label} href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined} className="flex items-start gap-4 group">
                     <div className={`w-11 h-11 rounded-xl ${item.color} flex items-center justify-center text-white shadow-sm flex-shrink-0 group-hover:scale-105 transition-transform`}>
                       <item.icon className="w-5 h-5" />
                     </div>
@@ -1211,7 +1213,7 @@ function HomePage() {
                 Ready to transform your career — or your team?
               </h2>
               <p className="text-white/80 mt-2 text-base">
-                Join 12,000+ professionals who chose EslandIT. The next cohort starts soon.
+                Join 12,000+ professionals who chose Ismart Skills. The next cohort starts soon.
               </p>
             </div>
             <div className="flex flex-wrap gap-4 shrink-0">

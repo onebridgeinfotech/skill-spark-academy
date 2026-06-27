@@ -3,13 +3,14 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin, MessageCircle, Send, Globe, Zap, ArrowRight, Shield } from "lucide-react";
+import { siteConfig, getWhatsAppUrl } from "@/lib/siteConfig";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Connect Nodes — EslandIT Trainings" },
-      { name: "description", content: "Contact the EslandIT Trainings London HQ. Accelerate your career in AI, Cloud, and DevOps with our industrial-grade mentorship tracks." },
-      { property: "og:title", content: "Contact EslandIT Trainings HQ" },
+      { title: "Connect Nodes — Ismart Skills" },
+      { name: "description", content: "Contact the Ismart Skills London HQ. Accelerate your career in AI, Cloud, and DevOps with our industrial-grade mentorship tracks." },
+      { property: "og:title", content: "Contact Ismart Skills HQ" },
       { property: "og:description", content: "Professional institutional inquiry Gateway for technical track enrollment." },
     ],
   }),
@@ -57,12 +58,16 @@ function ContactPage() {
                 
                 <div className="space-y-12">
                   {[
-                    { icon: MapPin, label: "Our Address", value: "Suite-G, Weller House, 58-60 Longbridge Rd, Barking, IG11 8RT.", color: "bg-blue-500" },
-                    { icon: Phone, label: "Phone", value: "0203 8190 333", color: "bg-green-500" },
-                    { icon: Mail, label: "Email", value: "info@eslanditsolutions.com", color: "bg-[#FF9E0D]" },
+                    { icon: MapPin, label: "Our Address", value: siteConfig.address.full, href: siteConfig.address.mapsUrl, color: "bg-blue-500" },
+                    { icon: Phone, label: "Phone", value: siteConfig.phone.display, href: `tel:${siteConfig.phone.tel}`, color: "bg-green-500" },
+                    { icon: MessageCircle, label: "WhatsApp", value: siteConfig.whatsapp.display, href: getWhatsAppUrl(), color: "bg-green-600" },
+                    { icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}`, color: "bg-[#FF9E0D]" },
                   ].map((item, i) => (
-                    <motion.div 
-                      key={i} 
+                    <motion.a
+                      key={i}
+                      href={item.href}
+                      target={item.href.startsWith("http") ? "_blank" : undefined}
+                      rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       whileHover={{ x: 10 }}
                       className="flex items-start gap-6 group/item cursor-pointer"
                     >
@@ -73,19 +78,19 @@ function ContactPage() {
                          <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-1">{item.label}</p>
                          <p className="text-[#004890] text-base font-semibold leading-snug">{item.value}</p>
                        </div>
-                    </motion.div>
+                    </motion.a>
                   ))}
                 </div>
 
                 <div className="mt-16 pt-12 border-t border-gray-100">
                     <a
-                      href="https://wa.me/442038190333"
+                      href={getWhatsAppUrl()}
                       target="_blank" rel="noopener noreferrer"
                       className="flex items-center justify-between bg-green-500 rounded-[2rem] px-8 py-5 text-white font-black text-xs uppercase tracking-widest shadow-2xl hover:bg-green-600 transition-all hover:scale-105 active:scale-95"
                     >
                       <div className="flex items-center gap-4">
                         <MessageCircle className="w-5 h-5" />
-                        WHATSAPP NODE
+                        WhatsApp {siteConfig.whatsapp.display}
                       </div>
                       <ArrowRight className="w-4 h-4" />
                     </a>
@@ -94,9 +99,9 @@ function ContactPage() {
 
              <div className="rounded-[4rem] overflow-hidden border-4 border-white shadow-2xl h-80 grayscale hover:grayscale-0 transition-all duration-700 depth-lift">
                <iframe
-                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2481.3!2d0.08!3d51.53!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBarking%2C+London!5e0!3m2!1sen!2suk!4v1"
+                 src={siteConfig.address.mapsEmbed}
                  width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy"
-                 title="EslandIT London HQ"
+                 title={`${siteConfig.name} London HQ`}
                />
              </div>
           </div>

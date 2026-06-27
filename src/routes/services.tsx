@@ -6,9 +6,9 @@ import { GraduationCap, Building2, PlayCircle, ArrowRight, CheckCircle2 } from "
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — EslandIT Trainings" },
+      { title: "Services — Ismart Skills" },
       { name: "description", content: "IT Trainings, Corporate Trainings, and Self-Paced Learning programs tailored to your needs." },
-      { property: "og:title", content: "Training Services — EslandIT Trainings" },
+      { property: "og:title", content: "Training Services — Ismart Skills" },
       { property: "og:description", content: "Comprehensive IT training solutions for individuals and enterprises." },
     ],
   }),

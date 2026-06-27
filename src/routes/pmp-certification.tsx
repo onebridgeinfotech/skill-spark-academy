@@ -46,7 +46,7 @@ const data: CourseTemplateData = {
   ],
 
   certificationTitle: "Project Management Professional (PMP®)",
-  certificationDesc: "This programme delivers the 35 contact hours required by PMI and prepares you for the PMP® examination. Upon course completion you receive an EslandIT institutional certificate alongside full mock exam preparation, study materials, and application support for your PMI exam booking.",
+  certificationDesc: "This programme delivers the 35 contact hours required by PMI and prepares you for the PMP® examination. Upon course completion you receive an Ismart Skills institutional certificate alongside full mock exam preparation, study materials, and application support for your PMI exam booking.",
   certificationStats: [
     { label: "Contact Hours",  value: "35 Hrs PMI"   },
     { label: "Mock Exams",     value: "3 Full Tests"  },
@@ -102,7 +102,7 @@ const data: CourseTemplateData = {
 export const Route = createFileRoute("/pmp-certification")({
   head: () => ({
     meta: [
-      { title: "PMP Certification Training — Live UK Programme | EslandIT Trainings" },
+      { title: "PMP Certification Training — Live UK Programme | Ismart Skills" },
       { name: "description", content: "8-week live PMP certification training programme for UK professionals. 35 PMI contact hours, 3 full mock exams, predictive and agile frameworks — pass first time." },
     ],
   }),

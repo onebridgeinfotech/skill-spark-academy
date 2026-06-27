@@ -48,7 +48,7 @@ const data: CourseTemplateData = {
   ],
 
   certificationTitle: "AWS DevOps Engineer Professional",
-  certificationDesc: "This programme prepares you for the AWS Certified DevOps Engineer – Professional exam. Upon completion you receive an EslandIT institutional certificate recognised by 250+ UK hiring partners, alongside full mock exam preparation and interview coaching.",
+  certificationDesc: "This programme prepares you for the AWS Certified DevOps Engineer – Professional exam. Upon completion you receive an Ismart Skills institutional certificate recognised by 250+ UK hiring partners, alongside full mock exam preparation and interview coaching.",
   certificationStats: [
     { label: "Mock Exams",     value: "Included"     },
     { label: "Interview Prep", value: "Included"     },
@@ -104,7 +104,7 @@ const data: CourseTemplateData = {
 export const Route = createFileRoute("/aws-devops-gen-ai")({
   head: () => ({
     meta: [
-      { title: "AWS DevOps with Generative AI — Live Training UK | EslandIT Trainings" },
+      { title: "AWS DevOps with Generative AI — Live Training UK | Ismart Skills" },
       { name: "description", content: "10-week live AWS DevOps with Generative AI training programme for UK professionals. CI/CD, EKS, Terraform, AWS Bedrock — hands-on enterprise labs and certification prep." },
     ],
   }),

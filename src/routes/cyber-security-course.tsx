@@ -50,7 +50,7 @@ const data: CourseTemplateData = {
   ],
 
   certificationTitle: "CompTIA Security+ & CEH Preparation",
-  certificationDesc: "This programme prepares you for the CompTIA Security+ and Certified Ethical Hacker (CEH) certifications. You receive an EslandIT institutional certificate recognised by 250+ UK hiring partners, with comprehensive mock exam sessions and technical interview coaching.",
+  certificationDesc: "This programme prepares you for the CompTIA Security+ and Certified Ethical Hacker (CEH) certifications. You receive an Ismart Skills institutional certificate recognised by 250+ UK hiring partners, with comprehensive mock exam sessions and technical interview coaching.",
   certificationStats: [
     { label: "Mock Exams",     value: "Included"     },
     { label: "Interview Prep", value: "Included"     },
@@ -106,7 +106,7 @@ const data: CourseTemplateData = {
 export const Route = createFileRoute("/cyber-security-course")({
   head: () => ({
     meta: [
-      { title: "Cyber Security Course — Live Training UK | EslandIT Trainings" },
+      { title: "Cyber Security Course — Live Training UK | Ismart Skills" },
       { name: "description", content: "12-week live cyber security training programme for UK professionals. Ethical hacking, penetration testing, SOC skills, cloud security — with CompTIA Security+ and CEH certification prep." },
     ],
   }),
